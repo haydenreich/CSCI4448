@@ -12,7 +12,7 @@ public class Game extends JFrame {
 	void initUI() {
 		add(new Screen());
 		menu = new Menu();
-		setSize(600,600);
+		setSize(1280,720);
 		setTitle("Survive");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

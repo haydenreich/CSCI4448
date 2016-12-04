@@ -7,8 +7,11 @@ public class Game extends JFrame {
 		initUI();
 	}
 	
-	private void initUI() {
+	private Menu menu;
+	
+	void initUI() {
 		add(new Screen());
+		menu = new Menu();
 		setSize(600,600);
 		setTitle("Survive");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,6 +25,8 @@ public class Game extends JFrame {
 			public void run(){
 				Game ex = new Game();
 				ex.setVisible(true);
+				ex.menu.setLocationRelativeTo(ex);
+				ex.menu.setVisible(true);	
 			}
 		});
 	}

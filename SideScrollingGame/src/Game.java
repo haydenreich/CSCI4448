@@ -9,13 +9,11 @@ public class Game extends JFrame {
 	
 	private void initUI() {
 		add(new Screen());
-		
-		setSize(600,800);
-		
+		setSize(600,600);
 		setTitle("Survive");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
+		setResizable(false);
 	}
 	
 	public static void main(String[] args){

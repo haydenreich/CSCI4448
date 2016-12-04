@@ -1,36 +1,83 @@
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 
 public class Character {
-	private int dx;
-	private int dy;
-	private int x;
-	private int y;
-	
-	public void draw(Graphics g){
-		Graphics2D g2d = (Graphics2D) g;
+		private int dx;
+		private int dy;
+		private int x;
+		private int y;
+		private Image image;
 		
-		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		public Character(){
+			initChar();
+		}
+		private void initChar() {
+	        
+	        ImageIcon icon = new ImageIcon("sprite.png");
+	        image = icon.getImage();
+	        x = 50;
+	        y = 50;        
+	    }
+		public void move(){
+			x += dx;
+			y += dy;
+		}
+		 public int getX(){
+			 return x;
+		 }
+		 public int getY(){
+			 return y;
+		 }
+		 public Image getImage(){
+			return image;
+		 }
+		 
+		 public void keyPressed(KeyEvent e){
+			 int key = e.getKeyCode();
+			 if (key == KeyEvent.VK_UP){
+				 dy = -1;
+			 }
+			 if(key == KeyEvent.VK_DOWN){
+				 dy = 1;
+			 }
+			 if(key == KeyEvent.VK_LEFT){
+				 dx = -1;
+			 }
+			 if(key == KeyEvent.VK_RIGHT){
+				 dx = 1;
+			 }
+		 }
+		 
+		 public void keyReleased(KeyEvent e) {
+		        
+		        int key = e.getKeyCode();
+		        
+		        if (key == KeyEvent.VK_UP) {
+		            dy = 0;
+		        }
+
+		        if (key == KeyEvent.VK_DOWN) {
+		            dy = 0;
+		        }
+
+		        if (key == KeyEvent.VK_LEFT) {
+		            dx = 0;
+		        }
+
+		        if (key == KeyEvent.VK_RIGHT) {
+		            dx = 0;
+		        }
+		 }
 		
-		rh.put(RenderingHints.KEY_RENDERING,
-				RenderingHints.VALUE_RENDER_QUALITY);
-		
-		g2d.setRenderingHints(rh);
 		
 		//Dimension size = getSize();
 		//double w = size.getWidth();
 		//double h = size.getHeight();
 		
-		g2d.drawRect(0, 0, 50, 50);
-		g2d.setColor(Color.red);
-		g2d.fillRect(0,0,50,50);
-	}
+		//g2d.drawRect(0, 0, 50, 50);
+		//g2d.setColor(Color.red);
+		//g2d.fillRect(0,0,50,50);
 }

@@ -117,6 +117,8 @@ public class Screen extends JPanel implements ActionListener {
     	g2d.setFont(small);
     	g2d.drawString(sb.toString(), 10, 20);
     	
+    	Toolkit.getDefaultToolkit().sync();
+    	
 	}
 	@Override
     public void actionPerformed(ActionEvent e) {
@@ -212,6 +214,10 @@ public class Screen extends JPanel implements ActionListener {
 	        	else
 	        	{
 	        		obj.SetFalling(false);
+	        		enemyObjects.remove(obj);
+	        		Enemy enemy = new Enemy(1,1);
+	        		enemyObjects.add(enemy);
+	        		repaint();
 	        		break;
 	        	}
 	    	}

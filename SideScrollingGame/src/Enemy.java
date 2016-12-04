@@ -1,13 +1,14 @@
+import java.util.Random;
 
 public class Enemy extends Sprite{
 	int health = 1000;
 	int strength = 10;
 	
 	public Enemy(int x, int y) {
-        
+        Random rand = new Random();
         setImage("enemy.png");
-        this.x = x;
-        this.y = y;
+        this.x = rand.nextInt(600) + 1;
+        this.y = 0;
         width = 70;
         height = 82;
 		jumpSpeed = 5;

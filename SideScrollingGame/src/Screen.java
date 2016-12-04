@@ -52,7 +52,7 @@ public class Screen extends JPanel implements ActionListener {
 		powerupObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 540, 600, 100));
+		environmentObjects.add(new Environment(0, 620, 1280, 100));
 		environmentObjects.add(new Destructable(0,300,50,25)); 
 		environmentObjects.add(new Destructable(50,300,50,25)); 
 		environmentObjects.add(new Destructable(100,300,50,25)); 
@@ -117,21 +117,14 @@ public class Screen extends JPanel implements ActionListener {
 //    	}
     	ListIterator<Environment> itEnvironment = environmentObjects.listIterator(0);
     	while(itEnvironment.hasNext()){
-    		Environment obj = itEnvironment.next();
-    		if(obj.isVisible())
+    		Environment objEnvironment = itEnvironment.next();
+    		if(objEnvironment.isVisible())
     		{
-	    		g2d.setColor(obj.getColor());
-	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+	    		g2d.setColor(objEnvironment.getColor());
+	    		g2d.fillRect(objEnvironment.getX(), objEnvironment.getY(),objEnvironment.getWidth(),objEnvironment.getHeight());
     		}
     		else
     			itEnvironment.remove();
-=======
-    	for (Environment obj : environmentObjects)
-    	{
-    		g2d.setColor(obj.getColor());
-    		g2d.drawLine(0, 680, 1280, 680);
-    		//g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
->>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
     	}
     	//Draw Enemies
 //    	for (Enemy obj : enemyObjects)
@@ -141,10 +134,10 @@ public class Screen extends JPanel implements ActionListener {
 //    	}
     	ListIterator<Enemy> itEnemy = enemyObjects.listIterator(0);
     	while(itEnemy.hasNext()){
-    		Enemy obj = itEnemy.next();
-    		if(obj.isVisible())
+    		Enemy objEnemy = itEnemy.next();
+    		if(objEnemy.isVisible())
     		{
-    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+    			g2d.drawImage(objEnemy.getImage(), objEnemy.getX(), objEnemy.getY(),objEnemy.getWidth(),objEnemy.getHeight(), this);
     		}
     		else
     			itEnemy.remove();
@@ -157,10 +150,10 @@ public class Screen extends JPanel implements ActionListener {
 //    	}
     	ListIterator<Powerup> itPowerup = powerupObjects.listIterator(0);
     	while(itPowerup.hasNext()){
-    		Powerup obj = itPowerup.next();
-    		if(obj.isVisible())
+    		Powerup objPowerup = itPowerup.next();
+    		if(objPowerup.isVisible())
     		{
-    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+    			g2d.drawImage(objPowerup.getImage(), objPowerup.getX(), objPowerup.getY(),objPowerup.getWidth(),objPowerup.getHeight(), this);
     		}
     		else
     			itPowerup.remove();

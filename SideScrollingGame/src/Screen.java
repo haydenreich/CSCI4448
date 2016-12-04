@@ -19,6 +19,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -27,6 +28,7 @@ public class Screen extends JPanel implements ActionListener {
 	
 	private Menu menu;
 	private Timer timer;
+	private int spawnTimer;
 	private final int DELAY = 10;
 	private Character player;
 	private ArrayList<Environment> environmentObjects;
@@ -45,7 +47,7 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Environment ground = new Environment(0, 540, 600, 100);
 		environmentObjects.add(ground);
-		Enemy enemy = new Enemy(500, 200);
+		Enemy enemy = new Enemy(500, 200, 20);
 		enemyObjects.add(enemy);
 		Powerup powerup = new Powerup(0,0);
 		powerupObjects.add(powerup);
@@ -70,6 +72,8 @@ public class Screen extends JPanel implements ActionListener {
 		
 		timer = new Timer(DELAY, this);
 		timer.start();
+		
+		
 	}
 	//Character c = new Character();
 	@Override
@@ -138,12 +142,21 @@ public class Screen extends JPanel implements ActionListener {
     		obj.move();
     	}
         
+    	spawnTimer += 1;
+		if (spawnTimer == 500){
+			Enemy enemy = new Enemy(1,1,1);
+			enemyObjects.add(enemy);
+			spawnTimer -= 500;
+		}
+		
+		
 		checkCollisions();
         
 		if (player.getHealth()<=0)
 		{
 			initObjects();
 		}
+		
 		
         repaint();  
     }
@@ -214,9 +227,9 @@ public class Screen extends JPanel implements ActionListener {
 	        	else
 	        	{
 	        		obj.SetFalling(false);
-	        		enemyObjects.remove(obj);
-	        		Enemy enemy = new Enemy(1,1);
-	        		enemyObjects.add(enemy);
+	        		Random rand = new Random();
+	        		obj.x = rand.nextInt(530) + 1;
+	        		obj.y = 0;
 	        		repaint();
 	        		break;
 	        	}

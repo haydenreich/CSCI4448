@@ -13,7 +13,7 @@ public class Character extends Sprite{
 		private void initChar() {
 	        
 	        setImage("sprite.png");
-	        x = 0;
+	        x = 50;
 	        y = 200;
 	        width = 70;
 	        height = 82;

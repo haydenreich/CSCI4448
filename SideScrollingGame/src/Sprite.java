@@ -22,9 +22,11 @@ public class Sprite {
 	}
 	
 	public void move(){
-		x += dx;
+		if(x>0 && x<1210) x += dx;
 		if (jump) jump();
 		else if (falling) fall();
+		else if(x <= 0) x+=1;
+		else if(x>= 1210) x-=1;
 		else y+=dy;
 	}
 	

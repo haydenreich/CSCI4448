@@ -19,6 +19,7 @@ import javax.swing.Timer;
 
 public class Screen extends JPanel implements ActionListener {
 	
+	private Menu menu;
 	private Timer timer;
 	private final int DELAY = 10;
 	
@@ -26,19 +27,29 @@ public class Screen extends JPanel implements ActionListener {
 		initScreen();
 	}
 	
+	private enum STATE{
+		MENU,
+		GAME
+	};
+	private STATE State = STATE.MENU;
+	
 	public void initScreen(){
-		addKeyListener(new TAdapter());
+		//addKeyListener(new TAdapter());
 		setFocusable(true);
-		
-		timer = new Timer(DELAY, this);
-		timer.start();
+		menu = new Menu();
+		if(State == STATE.GAME){
+			timer = new Timer(DELAY, this);
+			timer.start();
+		}
 	}
 	Character c = new Character();
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		if(State == STATE.GAME){
+			c.draw(g);
+		}
 		
-		c.draw(g);
 	}
 
 	@Override

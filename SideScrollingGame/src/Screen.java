@@ -27,34 +27,45 @@ public class Screen extends JPanel implements ActionListener {
 		initScreen();
 	}
 	
-	private enum STATE{
-		MENU,
-		GAME
-	};
-	private STATE State = STATE.MENU;
-	
-	public void initScreen(){
-		//addKeyListener(new TAdapter());
+	private void initScreen(){
+		addKeyListener(new TAdapter());
 		setFocusable(true);
-		menu = new Menu();
-		if(State == STATE.GAME){
-			timer = new Timer(DELAY, this);
-			timer.start();
-		}
+		setBackground(Color.BLACK);
+		
+		timer = new Timer(DELAY, this);
+		timer.start();
 	}
-	Character c = new Character();
+	//Character c = new Character();
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		if(State == STATE.GAME){
-			c.draw(g);
-		}
-		
+		drawPlayer(g);
 	}
-
+	Character player = new Character();
+	int x =1;
+	public void drawPlayer(Graphics g){
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawImage(player.getImage(), player.getX(), player.getY(),245,110, this);
+	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+    public void actionPerformed(ActionEvent e) {
+        
+        player.move();
+        repaint();  
+    }
+    private class TAdapter extends KeyAdapter {
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            player.keyReleased(e);
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            player.keyPressed(e);
+        }
+	//@Override
+	
 		
 	}
 	

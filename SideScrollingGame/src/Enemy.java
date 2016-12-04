@@ -7,7 +7,7 @@ public class Enemy extends Sprite{
 	public Enemy(int x, int y) {
         Random rand = new Random();
         setImage("enemy.png");
-        this.x = rand.nextInt(600) + 1;
+        this.x = rand.nextInt(1210) + 1;
         this.y = 0;
         width = 70;
         height = 82;

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,9 @@ import java.util.Formatter;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -29,6 +32,8 @@ public class Screen extends JPanel implements ActionListener {
 	
 	private Menu menu;
 	private Timer timer;
+	private int spawnTimer;
+	protected Image image;
 	private final int DELAY = 10;
 	private Character player;
 	private ArrayList<Environment> environmentObjects;
@@ -62,29 +67,33 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
-		Powerup powerup = new Powerup(0,0);
+		Powerup powerup = new Powerup(0,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(100,0);
+		powerup = new Powerup(200,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(200,0);
+		powerup = new Powerup(400,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(300,0);
+		powerup = new Powerup(600,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(400,0);
+		powerup = new Powerup(800,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(500,0);
+		powerup = new Powerup(1000,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(600,0);
+		powerup = new Powerup(1200,1);
 		powerupObjects.add(powerup);
 	}
 	
 	private void initScreen(){
 		addKeyListener(new TAdapter());
 		setFocusable(true);
-		setBackground(Color.BLACK);
+		ImageIcon icon = new ImageIcon("background.jpg");
+	    image = icon.getImage();
+		
 		
 		timer = new Timer(DELAY, this);
 		timer.start();
+		
+		
 	}
 	//Character c = new Character();
 	@Override
@@ -96,7 +105,7 @@ public class Screen extends JPanel implements ActionListener {
 	
 	public void drawObjects(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		
+		g2d.drawImage(image, 0, 0, 1280, 720, this);
 		//Draw player
 		g2d.drawImage(player.getImage(), player.getX(), player.getY(),player.getWidth(),player.getHeight(), this);
 		
@@ -116,6 +125,13 @@ public class Screen extends JPanel implements ActionListener {
     		}
     		else
     			itEnvironment.remove();
+=======
+    	for (Environment obj : environmentObjects)
+    	{
+    		g2d.setColor(obj.getColor());
+    		g2d.drawLine(0, 680, 1280, 680);
+    		//g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+>>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
     	}
     	//Draw Enemies
 //    	for (Enemy obj : enemyObjects)
@@ -182,12 +198,21 @@ public class Screen extends JPanel implements ActionListener {
     		obj.move();
     	}
         
+    	spawnTimer += 1;
+		if (spawnTimer == 500){
+			Enemy enemy = new Enemy(1,1);
+			enemyObjects.add(enemy);
+			spawnTimer -= 500;
+		}
+		
+		
 		checkCollisions();
         
 		if (player.getHealth()<=0)
 		{
 			initObjects();
 		}
+		
 		
         repaint();  
     }
@@ -258,9 +283,9 @@ public class Screen extends JPanel implements ActionListener {
 	        	else
 	        	{
 	        		obj.SetFalling(false);
-	        		enemyObjects.remove(obj);
-	        		Enemy enemy = new Enemy(1,1);
-	        		enemyObjects.add(enemy);
+	        		Random rand = new Random();
+	        		obj.x = rand.nextInt(1210) + 1;
+	        		obj.y = 0;
 	        		repaint();
 	        		break;
 	        	}

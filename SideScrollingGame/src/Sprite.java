@@ -1,0 +1,92 @@
+import java.awt.Image;
+import java.awt.Rectangle;
+import javax.swing.ImageIcon;
+
+public class Sprite {
+	protected int dx;
+	protected int dy;
+	protected int x;
+	protected int y;
+    protected int width;
+    protected int height;
+    protected int jumpSpeed;
+    protected boolean vis;
+    protected boolean jump;
+    protected boolean falling;
+	protected Image image;
+	
+	public Sprite()
+	{
+		vis = true;
+		falling = false;
+	}
+	
+	public void move(){
+		x += dx;
+		if (jump) jump();
+		else if (falling) fall();
+		else y+=dy;
+	}
+	
+	public void jump()
+	{
+		if (dy>0)
+		{
+			y-=5;
+			dy-=5;
+		}
+		else jump = false;
+	}
+	public void fall()
+	{
+		y+=5;
+	}
+	public void SetFalling(boolean falling)
+	{
+		this.falling = falling;
+	}
+	public void SetJump(boolean jump)
+	{
+		this.jump = jump;
+	}
+    protected void getImageDimensions() {
+
+        width = image.getWidth(null);
+        height = image.getHeight(null);
+    }
+	 public int getX(){
+		 return x;
+	 }
+	 public int getY(){
+		 return y;
+	 }
+	 public int getWidth()
+	 {
+		 return width;
+	 }
+	 public int getHeight()
+	 {
+		 return height;
+	 }
+	 public Image getImage(){
+		return image;
+	 }
+	 public void setImage(String path)
+	 {
+	    ImageIcon icon = new ImageIcon(path);
+	    image = icon.getImage();
+	    getImageDimensions();
+	 }
+	 
+	public boolean isVisible() {
+	    return vis;
+	}
+	
+	public void setVisible(Boolean visible) {
+	    vis = visible;
+	}
+	
+	public Rectangle getBounds() {
+	    return new Rectangle(x, y, width, height);
+	}
+}

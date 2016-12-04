@@ -18,6 +18,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Locale;
 
 import javax.swing.JPanel;
@@ -39,12 +41,25 @@ public class Screen extends JPanel implements ActionListener {
 	
 	private void initObjects()
 	{
+		//Init object arrays
 		environmentObjects = new ArrayList<>();
 		enemyObjects = new ArrayList<>();
 		powerupObjects = new ArrayList<>();
+		
+		//The Level
+		environmentObjects.add(new Environment(0, 540, 600, 100));
+		environmentObjects.add(new Destructable(0,300,50,25)); 
+		environmentObjects.add(new Destructable(50,300,50,25)); 
+		environmentObjects.add(new Destructable(100,300,50,25)); 
+		environmentObjects.add(new Destructable(150,300,50,25)); 
+		environmentObjects.add(new Destructable(200,300,50,25)); 
+		environmentObjects.add(new Destructable(500,300,50,25)); 
+		environmentObjects.add(new Destructable(550,300,50,25)); 
+		environmentObjects.add(new Destructable(600,300,50,25)); 
+		
+		
+		
 		player = new Character();
-		Environment ground = new Environment(0, 540, 600, 100);
-		environmentObjects.add(ground);
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
 		Powerup powerup = new Powerup(0,0);
@@ -86,24 +101,53 @@ public class Screen extends JPanel implements ActionListener {
 		g2d.drawImage(player.getImage(), player.getX(), player.getY(),player.getWidth(),player.getHeight(), this);
 		
 		//Draw Environment Objects
-    	for (Environment obj : environmentObjects)
-    	{
-    		g2d.setColor(obj.getColor());
-    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+//    	for (Environment obj : environmentObjects)
+//    	{
+//    		g2d.setColor(obj.getColor());
+//    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+//    	}
+    	ListIterator<Environment> itEnvironment = environmentObjects.listIterator(0);
+    	while(itEnvironment.hasNext()){
+    		Environment obj = itEnvironment.next();
+    		if(obj.isVisible())
+    		{
+	    		g2d.setColor(obj.getColor());
+	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+    		}
+    		else
+    			itEnvironment.remove();
     	}
-    	
     	//Draw Enemies
-    	for (Enemy obj : enemyObjects)
-    	{
+//    	for (Enemy obj : enemyObjects)
+//    	{
+//    		if(obj.isVisible())
+//    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+//    	}
+    	ListIterator<Enemy> itEnemy = enemyObjects.listIterator(0);
+    	while(itEnemy.hasNext()){
+    		Enemy obj = itEnemy.next();
     		if(obj.isVisible())
+    		{
     			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+    		}
+    		else
+    			itEnemy.remove();
     	}
-    	
     	//Draw Powerups
-    	for (Powerup obj : powerupObjects)
-    	{
+//    	for (Powerup obj : powerupObjects)
+//    	{
+//    		if(obj.isVisible())
+//    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+//    	}
+    	ListIterator<Powerup> itPowerup = powerupObjects.listIterator(0);
+    	while(itPowerup.hasNext()){
+    		Powerup obj = itPowerup.next();
     		if(obj.isVisible())
+    		{
     			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
+    		}
+    		else
+    			itPowerup.remove();
     	}
     	
     	//Draw health
@@ -169,7 +213,7 @@ public class Screen extends JPanel implements ActionListener {
     	for (Environment obj : environmentObjects)
     	{
     		Rectangle rcObj = obj.getBounds();
-        	if (rcPlayer.y + rcPlayer.height < rcObj.y)
+        	if (!rcObj.intersects(rcPlayer))
         		player.SetFalling(true);
         	else
         	{

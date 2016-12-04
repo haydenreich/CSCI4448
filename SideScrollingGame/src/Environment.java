@@ -9,9 +9,11 @@ public class Environment{
     protected int width;
     protected int height;
     protected Color color;
+    protected boolean vis;
     
 	public Environment(int x, int y, int w, int h)
 	{
+		vis = true;
 		this.x = x;
 		this.y = y;
 		this.width = w;
@@ -42,4 +44,12 @@ public class Environment{
 	public Rectangle getBounds() {
 	    return new Rectangle(x, y, width, height);
 	}
+	public boolean isVisible() {
+	    return vis;
+	}
+	
+	public void setVisible(Boolean visible) {
+	    vis = visible;
+	}
+	
 }

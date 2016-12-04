@@ -48,23 +48,23 @@ public class Screen extends JPanel implements ActionListener {
 		enemyObjects = new ArrayList<>();
 		powerupObjects = new ArrayList<>();
 		player = new Character();
-		Environment ground = new Environment(0, 540, 600, 100);
+		Environment ground = new Environment(0, 680, 1280, 1);
 		environmentObjects.add(ground);
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
-		Powerup powerup = new Powerup(0,0);
+		Powerup powerup = new Powerup(0,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(100,0);
+		powerup = new Powerup(200,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(200,0);
+		powerup = new Powerup(400,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(300,0);
+		powerup = new Powerup(600,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(400,0);
+		powerup = new Powerup(800,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(500,0);
+		powerup = new Powerup(1000,1);
 		powerupObjects.add(powerup);
-		powerup = new Powerup(600,0);
+		powerup = new Powerup(1200,1);
 		powerupObjects.add(powerup);
 	}
 	
@@ -234,7 +234,7 @@ public class Screen extends JPanel implements ActionListener {
 	        	{
 	        		obj.SetFalling(false);
 	        		Random rand = new Random();
-	        		obj.x = rand.nextInt(530) + 1;
+	        		obj.x = rand.nextInt(1210) + 1;
 	        		obj.y = 0;
 	        		repaint();
 	        		break;

@@ -25,12 +25,12 @@ public class Character extends Sprite{
 		 
 		 public void keyPressed(KeyEvent e){
 			 int key = e.getKeyCode();
-			 if (key == KeyEvent.VK_UP){
+			 /*if (key == KeyEvent.VK_UP){
 				 dy = -1;
 			 }
 			 if(key == KeyEvent.VK_DOWN){
 				 dy = 1;
-			 }
+			 }*/
 			 if(key == KeyEvent.VK_LEFT){
 				 dx = -speed;
 			 }
@@ -51,12 +51,12 @@ public class Character extends Sprite{
 		        
 		        int key = e.getKeyCode();
 
-				 if (key == KeyEvent.VK_UP){
+				/* if (key == KeyEvent.VK_UP){
 					 dy = 0;
 				 }
 		        if (key == KeyEvent.VK_DOWN) {
 		            dy = 0;
-		        }
+		        }*/
 
 		        if (key == KeyEvent.VK_LEFT) {
 		            dx = 0;

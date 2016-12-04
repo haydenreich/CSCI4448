@@ -58,9 +58,9 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Destructable(100,300,50,25)); 
 		environmentObjects.add(new Destructable(150,300,50,25)); 
 		environmentObjects.add(new Destructable(200,300,50,25)); 
-		environmentObjects.add(new Destructable(500,300,50,25)); 
-		environmentObjects.add(new Destructable(550,300,50,25)); 
-		environmentObjects.add(new Destructable(600,300,50,25)); 
+		environmentObjects.add(new Destructable(400,300,50,25)); 
+		environmentObjects.add(new Destructable(450,300,50,25)); 
+		environmentObjects.add(new Destructable(650,300,50,25)); 
 		
 		
 		
@@ -248,7 +248,7 @@ public class Screen extends JPanel implements ActionListener {
     		for (Environment obj2 : environmentObjects)
 	    	{
 	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (rcObj.y + rcObj.height < rcObj2.y)
+	        	if (!rcObj.intersects(rcObj2))
 	        		obj.SetFalling(true);
 	        	else
 	        	{
@@ -271,7 +271,7 @@ public class Screen extends JPanel implements ActionListener {
     		for (Environment obj2 : environmentObjects)
 	    	{
 	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (rcObj.y + rcObj.height < rcObj2.y)
+	        	if (!rcObj.intersects(rcObj2))
 	        		obj.SetFalling(true);
 	        	else
 	        	{

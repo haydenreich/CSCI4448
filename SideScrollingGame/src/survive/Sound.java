@@ -13,7 +13,6 @@ public class Sound {
 	public static Sound hurt = new Sound("hurt.wav");
 	public static Sound jump = new Sound("jump.wav");
 	public static Sound splat = new Sound("splat.wav");
-//	public static Sound sound4 = new Sound("doom theme 4.wav");
 	
 	public Sound (String fileName) {
 		try {

@@ -18,6 +18,7 @@ public class Destructable extends Environment{
 		 health-=dmg;
 		 if(health<=0) vis = false;
 	 }
+
 	 public int getHealth()
 	 {
 		 return health;

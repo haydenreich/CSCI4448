@@ -36,6 +36,7 @@ public class Screen extends JPanel implements ActionListener {
 	private final int DELAY = 10;
 	private Character player;
 	private ArrayList<Environment> environmentObjects;
+	private ArrayList<Destructable> destructableObjects;
 	private ArrayList<Enemy> enemyObjects;
 	private ArrayList<Powerup> powerupObjects;
 	private ArrayList<BouncingEnemy> flyingObjects;
@@ -58,17 +59,37 @@ public class Screen extends JPanel implements ActionListener {
 		enemyObjects = new ArrayList<>();
 		flyingObjects = new ArrayList<>();
 		powerupObjects = new ArrayList<>();
+		destructableObjects = new ArrayList<>();
 		
 		//The Level
 		environmentObjects.add(new Environment(0, 620, 1280, 100));
-		environmentObjects.add(new Destructable(0,300,50,25)); 
-		environmentObjects.add(new Destructable(50,300,50,25)); 
-		environmentObjects.add(new Destructable(100,300,50,25)); 
-		environmentObjects.add(new Destructable(150,300,50,25)); 
-		environmentObjects.add(new Destructable(200,300,50,25)); 
-		environmentObjects.add(new Destructable(400,300,50,25)); 
-		environmentObjects.add(new Destructable(450,300,50,25)); 
-		environmentObjects.add(new Destructable(650,300,50,25)); 
+		destructableObjects.add(new Destructable(0,300,50,25)); 
+		destructableObjects.add(new Destructable(50,300,50,25)); 
+		destructableObjects.add(new Destructable(100,300,50,25)); 
+		destructableObjects.add(new Destructable(150,300,50,25)); 
+		destructableObjects.add(new Destructable(200,300,50,25)); 
+		destructableObjects.add(new Destructable(400,300,50,25)); 
+		destructableObjects.add(new Destructable(450,300,50,25)); 
+		destructableObjects.add(new Destructable(650,300,50,25)); 
+		destructableObjects.add(new Destructable(700,300,50,25)); 
+		destructableObjects.add(new Destructable(750,300,50,25)); 
+		destructableObjects.add(new Destructable(800,300,50,25)); 
+		destructableObjects.add(new Destructable(850,300,50,25)); 
+		destructableObjects.add(new Destructable(900,300,50,25)); 
+		destructableObjects.add(new Destructable(0,500,50,25)); 
+		destructableObjects.add(new Destructable(50,500,50,25)); 
+		destructableObjects.add(new Destructable(100,500,50,25)); 
+		destructableObjects.add(new Destructable(150,500,50,25)); 
+		destructableObjects.add(new Destructable(200,500,50,25)); 
+		destructableObjects.add(new Destructable(400,500,50,25)); 
+		destructableObjects.add(new Destructable(450,500,50,25)); 
+		destructableObjects.add(new Destructable(650,500,50,25)); 
+		destructableObjects.add(new Destructable(700,500,50,25)); 
+		destructableObjects.add(new Destructable(750,500,50,25)); 
+		destructableObjects.add(new Destructable(800,500,50,25)); 
+		destructableObjects.add(new Destructable(850,500,50,25)); 
+		destructableObjects.add(new Destructable(900,500,50,25)); 
+		
 		
 		
 		
@@ -103,7 +124,6 @@ public class Screen extends JPanel implements ActionListener {
 		timer = new Timer(DELAY, this);
 		timer.start();
 		
-		
 	}
 	//Character c = new Character();
 	@Override
@@ -120,34 +140,37 @@ public class Screen extends JPanel implements ActionListener {
 		g2d.drawImage(player.getImage(), player.getX(), player.getY(),player.getWidth(),player.getHeight(), this);
 		
 		//Draw Environment Objects
-//    	for (Environment obj : environmentObjects)
-//    	{
-//    		g2d.setColor(obj.getColor());
-//    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
-//    	}
     	ListIterator<Environment> itEnvironment = environmentObjects.listIterator(0);
     	while(itEnvironment.hasNext()){
-    		Environment objEnvironment = itEnvironment.next();
-    		if(objEnvironment.isVisible())
+    		Environment obj = itEnvironment.next();
+    		if(obj.isVisible())
     		{
-	    		g2d.setColor(objEnvironment.getColor());
-	    		g2d.fillRect(objEnvironment.getX(), objEnvironment.getY(),objEnvironment.getWidth(),objEnvironment.getHeight());
+	    		g2d.setColor(obj.getColor());
+	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
     		}
     		else
     			itEnvironment.remove();
     	}
+    	
+    	//Draw Destructable objects
+    	ListIterator<Destructable> itDestructable = destructableObjects.listIterator(0);
+    	while(itDestructable.hasNext()){
+    		Environment obj = itDestructable.next();
+    		if(obj.isVisible())
+    		{
+	    		g2d.setColor(obj.getColor());
+	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+    		}
+    		else
+    			itDestructable.remove();
+    	}
     	//Draw Enemies
-//    	for (Enemy obj : enemyObjects)
-//    	{
-//    		if(obj.isVisible())
-//    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
-//    	}
     	ListIterator<Enemy> itEnemy = enemyObjects.listIterator(0);
     	while(itEnemy.hasNext()){
-    		Enemy objEnemy = itEnemy.next();
-    		if(objEnemy.isVisible())
+    		Enemy obj = itEnemy.next();
+    		if(obj.isVisible())
     		{
-    			g2d.drawImage(objEnemy.getImage(), objEnemy.getX(), objEnemy.getY(),objEnemy.getWidth(),objEnemy.getHeight(), this);
+    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
     		}
     		else
     			itEnemy.remove();
@@ -164,17 +187,12 @@ public class Screen extends JPanel implements ActionListener {
     			itFlyer.remove();
     	}
     	//Draw Powerups
-//    	for (Powerup obj : powerupObjects)
-//    	{
-//    		if(obj.isVisible())
-//    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
-//    	}
     	ListIterator<Powerup> itPowerup = powerupObjects.listIterator(0);
     	while(itPowerup.hasNext()){
-    		Powerup objPowerup = itPowerup.next();
-    		if(objPowerup.isVisible())
+    		Powerup obj = itPowerup.next();
+    		if(obj.isVisible())
     		{
-    			g2d.drawImage(objPowerup.getImage(), objPowerup.getX(), objPowerup.getY(),objPowerup.getWidth(),objPowerup.getHeight(), this);
+    			g2d.drawImage(obj.getImage(), obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight(), this);
     		}
     		else
     			itPowerup.remove();
@@ -229,12 +247,14 @@ public class Screen extends JPanel implements ActionListener {
 				obj.move();
 			}
 			gameTime += 1;
-			spawnTimer += 1;
-			if (spawnTimer == 500){
+	    	spawnTimer += 1;
+			if (spawnTimer % 100 == 0){
 				Enemy enemy = new Enemy(1,1);
 				enemyObjects.add(enemy);
-				spawnTimer -= 500;
-				score += 100;
+			}
+			if (spawnTimer % 500 == 0){
+				Enemy enemy = new EnemyType1(1,1);
+				enemyObjects.add(enemy);
 			}
 			if (gameTime == 1000)
 	    	 {
@@ -286,7 +306,7 @@ public class Screen extends JPanel implements ActionListener {
     	//Bounding box representing the player
     	Rectangle rcPlayer = player.getBounds();
     	
-    	//Check all objects against environment
+    	//Check player against environment
     	for (Environment obj : environmentObjects)
     	{
     		Rectangle rcObj = obj.getBounds();
@@ -302,7 +322,20 @@ public class Screen extends JPanel implements ActionListener {
         		//break;
         	//}
     	}
-
+    	if (player.IsFalling())
+    	{
+	    	for (Destructable obj : destructableObjects)
+	    	{
+	    		Rectangle rcObj = obj.getBounds();
+	        	if (!rcObj.intersects(rcPlayer))
+	        		player.SetFalling(true);
+	        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
+	        	{
+	        		player.SetFalling(false);
+	        		break;
+	        	}
+	    	}
+    	}
     	//Check Object collisions
     	for (Powerup obj : powerupObjects)
     	{    	
@@ -330,7 +363,7 @@ public class Screen extends JPanel implements ActionListener {
     	for (Enemy obj : enemyObjects)
     	{    	
     		Rectangle rcObj = obj.getBounds(); 
-    		//Check ground collision
+    		//Check Environment collision
     		for (Environment obj2 : environmentObjects)
 	    	{
 	    		Rectangle rcObj2 = obj2.getBounds();
@@ -339,10 +372,22 @@ public class Screen extends JPanel implements ActionListener {
 	        	else
 	        	{
 	        		obj.SetFalling(false);
-	        		Random rand = new Random();
-	        		obj.x = rand.nextInt(1210) + 1;
-	        		obj.y = 0;
-	        		repaint();
+//	        		Random rand = new Random();
+//	        		obj.x = rand.nextInt(1210) + 1;
+//	        		obj.y = 0;
+//	        		repaint();
+	        		break;
+	        	}
+	    	}
+    		//Check Destructable collision
+    		for (Destructable obj2 : destructableObjects)
+	    	{
+	    		Rectangle rcObj2 = obj2.getBounds();
+	        	if (!rcObj.intersects(rcObj2))
+	        		obj.SetFalling(true);
+	        	else
+	        	{
+	        		obj.DealDamage(obj2);
 	        		break;
 	        	}
 	    	}

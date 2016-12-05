@@ -390,8 +390,8 @@ public class Screen extends JPanel implements ActionListener {
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
-    			obj.setVisible(false);
-    			obj.DealDamage(player);
+    			player.HandleCollision(obj);
+    			obj.HandleCollision(player);
     		}
     	}
     }

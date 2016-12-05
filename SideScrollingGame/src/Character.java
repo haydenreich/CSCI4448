@@ -22,7 +22,7 @@ public class Character extends Sprite{
 	        height = 41;
 			jumpSpeed = 5;
 			health = 1000;
-			strength = 500;
+			strength = 1000;
 			speed = 3;
 			score = 0;
 			leftPressed = false;

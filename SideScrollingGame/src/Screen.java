@@ -24,14 +24,13 @@ import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class Screen extends JPanel implements ActionListener {
 	
 	private Menu menu;
 	private Timer timer;
+	private int gameTime;
 	private int spawnTimer;
 	protected Image image;
 	private final int DELAY = 10;
@@ -40,7 +39,14 @@ public class Screen extends JPanel implements ActionListener {
 	private ArrayList<Destructable> destructableObjects;
 	private ArrayList<Enemy> enemyObjects;
 	private ArrayList<Powerup> powerupObjects;
-	public Screen(){
+	private JFrame topFrame;
+	private int score;
+	private int gameState;
+	public Screen(Menu m){
+		topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		score = 0;
+		gameState = 0;
+		menu = m;
 		initObjects();
 		initScreen();
 	}
@@ -185,9 +191,14 @@ public class Screen extends JPanel implements ActionListener {
     	Formatter formatter = new Formatter(sb, Locale.US);
     	formatter.format("HEALTH: %d", player.getHealth());
     	
+		StringBuilder scoreString = new StringBuilder();
+    	Formatter scoreFormatter = new Formatter(scoreString, Locale.US);
+    	scoreFormatter.format("Score: %d", score);
+		
     	g2d.setColor(Color.green);
     	g2d.setFont(small);
     	g2d.drawString(sb.toString(), 10, 20);
+		g2d.drawString(scoreString.toString(), 500, 20);
     	
     	Toolkit.getDefaultToolkit().sync();
     	
@@ -195,6 +206,7 @@ public class Screen extends JPanel implements ActionListener {
 	@Override
     public void actionPerformed(ActionEvent e) {
 
+<<<<<<< HEAD
 		//update player
         player.move();
         
@@ -224,18 +236,74 @@ public class Screen extends JPanel implements ActionListener {
 		checkCollisions();
         
 		if (player.getHealth()<=0)
+=======
+		if(!menu.getPaused())
+>>>>>>> refs/remotes/origin/master
 		{
-			initObjects();
+			if (gameState == 0) {
+				gameState = 1;
+				menu.dispose();
+			}
+		
+			//update player
+			player.move();
+
+			//update enemies
+			for (Enemy obj : enemyObjects)
+			{
+				obj.move();
+			}
+
+			//update powerups
+			for (Powerup obj : powerupObjects)
+			{
+				obj.move();
+			}
+			gameTime += 1;
+			spawnTimer += 1;
+			if (spawnTimer == 500){
+				Enemy enemy = new Enemy(1,1);
+				enemyObjects.add(enemy);
+				spawnTimer -= 500;
+				score += 100;
+			}
+			if (gameTime == 1000)
+	    	 {
+	    		 gameState += 1;
+	    		 gameTime = 0;
+	    	 }
+
+
+			checkCollisions();
+
+			if (player.getHealth()<=0)
+			{
+				gameState = 0;
+				initObjects();
+			}
+
+
+			repaint(); 
 		}
-		
-		
-        repaint();  
     }
     private class TAdapter extends KeyAdapter {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            player.keyReleased(e);
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        	{
+        		if(menu == (Menu)null) {
+        			menu = new Menu(true);
+        		}
+        		else {
+        			menu.setVisible(true);
+        		}
+        		menu.setPaused();
+        		menu.setLocationRelativeTo(topFrame);
+        	}
+        	else {
+            	player.keyReleased(e);
+			}
         }
 
         @Override

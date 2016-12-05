@@ -5,7 +5,8 @@ public class Character extends Sprite{
 		int health;
 		int strength;
 		int speed;
-		
+		protected boolean leftPressed;
+		protected boolean rightPressed;
 		public Character(){
 			initChar();
 		}
@@ -21,6 +22,8 @@ public class Character extends Sprite{
 			health = 1000;
 			strength = 10;
 			speed = 3;
+			leftPressed = false;
+			rightPressed = false;
 	    }
 		 
 		 public void keyPressed(KeyEvent e){
@@ -32,16 +35,18 @@ public class Character extends Sprite{
 				 dy = 1;
 			 }*/
 			 if(key == KeyEvent.VK_LEFT){
-				 setImage("spriteL.png");
-			        width = 70;
-			        height = 82;
-				 dx = -speed;
+				 if(rightPressed == false)
+				 {
+					 Left();
+				 }
+				 leftPressed = true;
 			 }
 			 if(key == KeyEvent.VK_RIGHT){
-				 setImage("sprite.png");
-					width = 70;
-					height = 82;
-				 dx = speed;
+				 if(leftPressed == false)
+				 {
+					 Right();
+				 }
+			 	rightPressed = true;
 			 }
 			 if (key == KeyEvent.VK_SPACE)
 			 {
@@ -63,13 +68,20 @@ public class Character extends Sprite{
 		        if (key == KeyEvent.VK_DOWN) {
 		            dy = 0;
 		        }*/
-
 		        if (key == KeyEvent.VK_LEFT) {
-		            dx = 0;
+		        	if(rightPressed == false)
+		        		dx = 0;
+		        	else
+		        		Right();
+		            leftPressed = false;
 		        }
 
-		        if (key == KeyEvent.VK_RIGHT) {
-		            dx = 0;
+		        if (key == KeyEvent.VK_RIGHT ) {
+		        	if(leftPressed == false)
+		        		dx = 0;
+		        	else
+		        		Left();
+		            rightPressed = false;
 		        }
 		 }
 		
@@ -81,6 +93,20 @@ public class Character extends Sprite{
 		 public int getHealth()
 		 {
 			 return health;
+		 }
+		 private void Left()
+		 {
+			 setImage("spriteL.png");
+		        width = 70;
+		        height = 82;
+			 dx = -speed;
+		 }
+		 private void Right()
+		 {
+			 setImage("sprite.png");
+				width = 70;
+				height = 82;
+			 dx = speed;
 		 }
 		//Dimension size = getSize();
 		//double w = size.getWidth();

@@ -42,7 +42,7 @@ public class Sprite {
 			x+=1;
 			blocked = true;
 		}
-		else if(x>= 1210) 
+		else if(x>= 1245) 
 		{
 			x-=1;
 			blocked = true;

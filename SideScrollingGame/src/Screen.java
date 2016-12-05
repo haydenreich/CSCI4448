@@ -60,6 +60,7 @@ public class Screen extends JPanel implements ActionListener {
 		//The Level
 		environmentObjects.add(new Environment(0, 680, 1280, 5));
 		environmentObjects.add(new Environment(20, 640, 50, 10));
+		environmentObjects.add(new Environment(600, 640, 50, 10));
 		environmentObjects.add(new Environment(100, 580, 50, 10));
 		environmentObjects.add(new Environment(20, 510, 50, 10));
 		environmentObjects.add(new Environment(20, 480, 50, 10));
@@ -259,7 +260,7 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameTime = 0;
 	    	 }
 			for(Destructable obj: destructableObjects){
-				if(obj.health == 20) obj.broken = false;
+				if(obj.health == 30) obj.broken = false;
 				if(obj.broken == true) obj.health += 1;
 			}
 

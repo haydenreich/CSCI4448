@@ -120,7 +120,6 @@ public class Screen extends JPanel implements ActionListener {
 		timer = new Timer(DELAY, this);
 		timer.start();
 		
-		
 	}
 	//Character c = new Character();
 	@Override
@@ -206,35 +205,6 @@ public class Screen extends JPanel implements ActionListener {
 	@Override
     public void actionPerformed(ActionEvent e) {
 
-		//update player
-        player.move();
-        
-        //update enemies
-    	for (Enemy obj : enemyObjects)
-    	{
-    		obj.move();
-    	}
-    	
-        //update powerups
-    	for (Powerup obj : powerupObjects)
-    	{
-    		obj.move();
-    	}
-        
-    	spawnTimer += 1;
-		if (spawnTimer % 100 == 0){
-			Enemy enemy = new Enemy(1,1);
-			enemyObjects.add(enemy);
-		}
-		if (spawnTimer % 500 == 0){
-			Enemy enemy = new EnemyType1(1,1);
-			enemyObjects.add(enemy);
-		}
-		
-		
-		checkCollisions();
-        
-		if (player.getHealth()<=0)
 		if(!menu.getPaused())
 		{
 			if (gameState == 0) {
@@ -257,12 +227,14 @@ public class Screen extends JPanel implements ActionListener {
 				obj.move();
 			}
 			gameTime += 1;
-			spawnTimer += 1;
-			if (spawnTimer == 500){
+	    	spawnTimer += 1;
+			if (spawnTimer % 100 == 0){
 				Enemy enemy = new Enemy(1,1);
 				enemyObjects.add(enemy);
-				spawnTimer -= 500;
-				score += 100;
+			}
+			if (spawnTimer % 500 == 0){
+				Enemy enemy = new EnemyType1(1,1);
+				enemyObjects.add(enemy);
 			}
 			if (gameTime == 1000)
 	    	 {

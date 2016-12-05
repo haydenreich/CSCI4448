@@ -35,17 +35,11 @@ public class Character extends Sprite{
 				 dy = 1;
 			 }*/
 			 if(key == KeyEvent.VK_LEFT){
-				 if(rightPressed == false)
-				 {
 					 Left();
-				 }
 				 leftPressed = true;
 			 }
 			 if(key == KeyEvent.VK_RIGHT){
-				 if(leftPressed == false)
-				 {
 					 Right();
-				 }
 			 	rightPressed = true;
 			 }
 			 if (key == KeyEvent.VK_SPACE)

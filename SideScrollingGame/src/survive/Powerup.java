@@ -1,4 +1,7 @@
+
 package survive;
+
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -17,13 +20,22 @@ public class Powerup extends Sprite{
         dy = 0;
         width = 35;
         height = 41;
-		jumpSpeed = 1;
-		strength = 0;
 		speed = 0;
 		health = 0;
 		score = 0;
 	}
 	public void HandleCollision(Character player)
 	{
+		vis = false;
+	}
+	public boolean HandleCollision(Environment obj)
+	{
+		Rectangle rcThis = this.getBounds();
+		Rectangle rcObj = obj.getBounds();
+    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+    		this.SetFalling(false);
+    	else
+    		this.SetFalling(true);
+    	return !this.IsFalling();
 	}
 }

@@ -1,4 +1,7 @@
+
 package survive;
+
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.persistence.Column;
@@ -32,13 +35,13 @@ public class Character extends Sprite{
 		private void initChar() {
 	        
 	        setImage("sprite.png");
-	        x = 50;
-	        y = 200;
-	        width = 70;
-	        height = 82;
+	        x = 30;
+	        y = 600;
+	        width = 35;
+	        height = 41;
 			jumpSpeed = 5;
 			health = 1000;
-			strength = 10;
+			strength = 1000;
 			speed = 3;
 			score = 0;
 			leftPressed = false;
@@ -66,7 +69,7 @@ public class Character extends Sprite{
 			 {
 				 if(jump == false && falling == false)
 				 {
-					 dy = 100;
+					 dy = 120;
 					 jump = true;
 				 }
 			 }
@@ -124,17 +127,37 @@ public class Character extends Sprite{
 		 private void Left()
 		 {
 			 setImage("spriteL.png");
-		        width = 70;
-		        height = 82;
+		        width = 35;
+		        height = 41;
 			 dx = -speed;
 		 }
 		 private void Right()
 		 {
 			 setImage("sprite.png");
-				width = 70;
-				height = 82;
+				width = 35;
+				height = 41;
 			 dx = speed;
 		 }
+			public void HandleCollision(Enemy obj)
+			{
+		    	if ((this.y+this.height-5)<obj.y)
+		    	{
+		    		obj.TakeDamage(strength);
+					 dy = 40;
+					 jump = true;
+		    	}
+			}
+			public boolean HandleCollision(Environment obj)
+			{
+				Rectangle rcThis = this.getBounds();
+				Rectangle rcObj = obj.getBounds();
+		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+		    		this.SetFalling(false);
+		    	else
+		    		this.SetFalling(true);
+		    	return !this.IsFalling();
+			}
+
 		//Dimension size = getSize();
 		//double w = size.getWidth();
 		//double h = size.getHeight();

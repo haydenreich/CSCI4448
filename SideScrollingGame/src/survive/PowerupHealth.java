@@ -10,5 +10,6 @@ public class PowerupHealth extends Powerup {
 	public void HandleCollision(Character player)
 	{
 		player.TakeDamage(-health);
+		super.HandleCollision(player);
 	}
 }

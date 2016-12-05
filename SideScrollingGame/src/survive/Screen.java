@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
+import javax.sound.sampled.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -62,48 +63,71 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 620, 1280, 100));
-		destructableObjects.add(new Destructable(0,300,50,25)); 
-		destructableObjects.add(new Destructable(50,300,50,25)); 
-		destructableObjects.add(new Destructable(100,300,50,25)); 
-		destructableObjects.add(new Destructable(150,300,50,25)); 
-		destructableObjects.add(new Destructable(200,300,50,25)); 
-		destructableObjects.add(new Destructable(400,300,50,25)); 
-		destructableObjects.add(new Destructable(450,300,50,25)); 
-		destructableObjects.add(new Destructable(650,300,50,25)); 
-		destructableObjects.add(new Destructable(700,300,50,25)); 
-		destructableObjects.add(new Destructable(750,300,50,25)); 
-		destructableObjects.add(new Destructable(800,300,50,25)); 
-		destructableObjects.add(new Destructable(850,300,50,25)); 
-		destructableObjects.add(new Destructable(900,300,50,25)); 
-		destructableObjects.add(new Destructable(0,500,50,25)); 
-		destructableObjects.add(new Destructable(50,500,50,25)); 
-		destructableObjects.add(new Destructable(100,500,50,25)); 
-		destructableObjects.add(new Destructable(150,500,50,25)); 
-		destructableObjects.add(new Destructable(200,500,50,25)); 
-		destructableObjects.add(new Destructable(400,500,50,25)); 
-		destructableObjects.add(new Destructable(450,500,50,25)); 
-		destructableObjects.add(new Destructable(650,500,50,25)); 
-		destructableObjects.add(new Destructable(700,500,50,25)); 
-		destructableObjects.add(new Destructable(750,500,50,25)); 
-		destructableObjects.add(new Destructable(800,500,50,25)); 
-		destructableObjects.add(new Destructable(850,500,50,25)); 
-		destructableObjects.add(new Destructable(900,500,50,25)); 
+//		environmentObjects.add(new EnvironmentSolid(0, 620, 1280, 100));
+//		destructableObjects.add(new Destructable(0,300,50,25)); 
+//		destructableObjects.add(new Destructable(50,300,50,25)); 
+//		destructableObjects.add(new Destructable(100,300,50,25)); 
+//		destructableObjects.add(new Destructable(150,300,50,25)); 
+//		destructableObjects.add(new Destructable(200,300,50,25)); 
+//		destructableObjects.add(new Destructable(400,300,50,25)); 
+//		destructableObjects.add(new Destructable(450,300,50,25)); 
+//		destructableObjects.add(new Destructable(650,300,50,25)); 
+//		destructableObjects.add(new Destructable(700,300,50,25)); 
+//		destructableObjects.add(new Destructable(750,300,50,25)); 
+//		destructableObjects.add(new Destructable(800,300,50,25)); 
+//		destructableObjects.add(new Destructable(850,300,50,25)); 
+//		destructableObjects.add(new Destructable(900,300,50,25)); 
+//		destructableObjects.add(new Destructable(0,500,50,25)); 
+//		destructableObjects.add(new Destructable(50,500,50,25)); 
+//		destructableObjects.add(new Destructable(100,500,50,25)); 
+//		destructableObjects.add(new Destructable(150,500,50,25)); 
+//		destructableObjects.add(new Destructable(200,500,50,25)); 
+//		destructableObjects.add(new Destructable(400,500,50,25)); 
+//		destructableObjects.add(new Destructable(450,500,50,25)); 
+//		destructableObjects.add(new Destructable(650,500,50,25)); 
+//		destructableObjects.add(new Destructable(700,500,50,25)); 
+//		destructableObjects.add(new Destructable(750,500,50,25)); 
+//		destructableObjects.add(new Destructable(800,500,50,25)); 
+//		destructableObjects.add(new Destructable(850,500,50,25)); 
+//		destructableObjects.add(new Destructable(900,500,50,25)); 
+		environmentObjects.add(new Environment(0, 680, 1280, 5));
+		environmentObjects.add(new Environment(20, 640, 50, 10));
+		environmentObjects.add(new Environment(600, 640, 50, 10));
+		environmentObjects.add(new Environment(100, 580, 50, 10));
+		environmentObjects.add(new Environment(20, 510, 50, 10));
+		environmentObjects.add(new Environment(20, 480, 50, 10));
+		environmentObjects.add(new Environment(170, 480, 50, 10));
+		destructableObjects.add(new Destructable(300,480,50,10));
+		destructableObjects.add(new Destructable(430,480,50,10));
+		environmentObjects.add(new Environment(20, 450, 50, 10));
+		environmentObjects.add(new Environment(20, 420, 50, 10));
+		environmentObjects.add(new Environment(170, 390, 50, 10));
+		environmentObjects.add(new Environment(220, 350, 50, 10));
+		environmentObjects.add(new Environment(170, 310, 50, 10));
+		environmentObjects.add(new Environment(220, 270, 50, 10));
+		environmentObjects.add(new Environment(-40, 270, 50, 10));
+		environmentObjects.add(new Environment(170, 230, 50, 10));
+		environmentObjects.add(new Environment(-40, 210, 50, 10));
+		environmentObjects.add(new Environment(170, 180, 50, 10));
+		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		environmentObjects.add(new Environment(-40, 90, 50, 10));
+		environmentObjects.add(new Environment(-40, 30, 50, 10));
+		
 		
 		
 		
 		
 		player = new Character();
-		Enemy enemy = new Enemy(500, 200);
+		Enemy enemy = new EnemyType0(500, 200);
 		enemyObjects.add(enemy);
-		powerupObjects.add(new PowerupHealth(0,1));
+		//powerupObjects.add(new PowerupHealth(0,1));
 		powerupObjects.add(new PowerupHealth(200,1));
 		powerupObjects.add(new PowerupHealth(400,1));
 		powerupObjects.add(new PowerupHealth(600,1));
 		powerupObjects.add(new PowerupHealth(800,1));
 		powerupObjects.add(new PowerupHealth(1000,1));
 		powerupObjects.add(new PowerupHealth(1200,1));
-		powerupObjects.add(new PowerupGold(0,1));
+		powerupObjects.add(new PowerupGold(0,105));
 		powerupObjects.add(new PowerupGold(100,1));
 		powerupObjects.add(new PowerupGold(300,1));
 		powerupObjects.add(new PowerupGold(500,1));
@@ -117,7 +141,7 @@ public class Screen extends JPanel implements ActionListener {
 		setFocusable(true);
 		ImageIcon icon = new ImageIcon("background.jpg");
 	    image = icon.getImage();
-		
+		//musac
 		
 		timer = new Timer(DELAY, this);
 		timer.start();
@@ -153,10 +177,15 @@ public class Screen extends JPanel implements ActionListener {
     	//Draw Destructable objects
     	ListIterator<Destructable> itDestructable = destructableObjects.listIterator(0);
     	while(itDestructable.hasNext()){
-    		Environment obj = itDestructable.next();
+    		Destructable obj = itDestructable.next();
     		if(obj.isVisible())
     		{
-	    		g2d.setColor(obj.getColor());
+    			if(obj.broken == true){
+    				g2d.setColor(Color.red);
+    			}
+    			else{
+    				g2d.setColor(obj.getColor());
+    			}
 	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
     		}
     		else
@@ -223,6 +252,10 @@ public class Screen extends JPanel implements ActionListener {
 			//update enemies
 			for (Enemy obj : enemyObjects)
 			{
+				obj.UpdateMovement();
+				if (obj.y > 800){
+					obj.setVisible(false);
+				}
 				if(obj instanceof BouncingEnemy){
 					obj.fly();
 				}
@@ -244,15 +277,15 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new Enemy(1,1);
+				Enemy enemy = new EnemyType0(1,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 500 == 0){
-				Enemy enemy = new EnemyType1(1,1);
+				Enemy enemy = new EnemyType1(player.x,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 150 == 0){
-				Enemy flyer = new BouncingEnemy(0,1);
+				Enemy flyer = new BouncingEnemy(-1,1);
 				enemyObjects.add(flyer);
 			}
 			if (gameTime == 1000)
@@ -260,7 +293,10 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameState += 1;
 	    		 gameTime = 0;
 	    	 }
-
+			for(Destructable obj: destructableObjects){
+				if(obj.health == 30) obj.broken = false;
+				if(obj.broken == true) obj.health += 1;
+			}
 
 			checkCollisions();
 
@@ -326,39 +362,22 @@ public class Screen extends JPanel implements ActionListener {
 	}
     private void checkCollisions()
     {
+    	//result
+    	boolean bResult = false;
     	//Bounding box representing the player
     	Rectangle rcPlayer = player.getBounds();
     	
     	//Check player against environment
     	for (Environment obj : environmentObjects)
     	{
-    		Rectangle rcObj = obj.getBounds();
-        	if (!rcObj.intersects(rcPlayer))
-        		player.SetFalling(true);
-        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
-        	{
-        		player.SetFalling(false);
-        		break;
-        	}
-        	//else{
-        		//player.SetFalling(false);
-        		//break;
-        	//}
+    		bResult = player.HandleCollision(obj);
+    		if (bResult) break;
     	}
-    	if (player.IsFalling())
-    	{
+    	if(!bResult)
 	    	for (Destructable obj : destructableObjects)
 	    	{
-	    		Rectangle rcObj = obj.getBounds();
-	        	if (!rcObj.intersects(rcPlayer))
-	        		player.SetFalling(true);
-	        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
-	        	{
-	        		player.SetFalling(false);
-	        		break;
-	        	}
+	    		if (player.HandleCollision(obj)) break;
 	    	}
-    	}
     	//Check Object collisions
     	for (Powerup obj : powerupObjects)
     	{    	
@@ -366,20 +385,19 @@ public class Screen extends JPanel implements ActionListener {
     		//Check ground collision
     		for (Environment obj2 : environmentObjects)
 	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.SetFalling(false);
-	        		break;
-	        	}
+    			bResult = obj.HandleCollision(obj2);
+        		if (bResult) break;
 	    	}
+    		if (!bResult)
+	    		//Check Destructable collision
+	        	for (Destructable obj2 : destructableObjects)
+	        	{
+	        		if (obj.HandleCollision(obj2)) break;
+	        	}
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
     			obj.HandleCollision(player);
-    			obj.setVisible(false);
     		}
     	}
     	
@@ -390,35 +408,20 @@ public class Screen extends JPanel implements ActionListener {
     		//Check Environment collision
     		for (Environment obj2 : environmentObjects)
 	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.SetFalling(false);
-//	        		Random rand = new Random();
-//	        		obj.x = rand.nextInt(1210) + 1;
-//	        		obj.y = 0;
-//	        		repaint();
-	        		break;
-	        	}
+    			bResult = obj.HandleCollision(obj2);
+        		if (bResult) break;
 	    	}
     		//Check Destructable collision
-    		for (Destructable obj2 : destructableObjects)
-	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.DealDamage(obj2);
-	        		break;
-	        	}
-	    	}
+    		if (!bResult)
+	    		for (Destructable obj2 : destructableObjects)
+		    	{
+	        		if(obj.HandleCollision(obj2)) break;
+		    	}
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
-    			obj.DealDamage(player);
+    			player.HandleCollision(obj);
+    			obj.HandleCollision(player);
     		}
     	}
     }

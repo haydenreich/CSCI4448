@@ -20,7 +20,11 @@ public class Destructable extends Environment{
 	 public void TakeDamage(int dmg)
 	 {
 		 health-=dmg;
-		 if(health<=0) broken = true;
+		 if(health<=0) 
+		 {
+		 	health = 0;
+		 	broken = true;
+		 }
 	 }
 	 public int getHealth()
 	 {

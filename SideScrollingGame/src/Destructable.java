@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 
 public class Destructable extends Environment{
 
@@ -14,7 +15,6 @@ public class Destructable extends Environment{
 		strength = 0;
 		speed = 0;
 	}
-
 	 public void TakeDamage(int dmg)
 	 {
 		 health-=dmg;

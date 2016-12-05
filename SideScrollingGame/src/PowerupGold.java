@@ -9,5 +9,6 @@ public class PowerupGold extends Powerup{
 	public void HandleCollision(Character player)
 	{
 		player.UpdateScore(score);
+		super.HandleCollision(player);
 	}
 }

@@ -206,7 +206,6 @@ public class Screen extends JPanel implements ActionListener {
 	@Override
     public void actionPerformed(ActionEvent e) {
 
-<<<<<<< HEAD
 		//update player
         player.move();
         
@@ -236,9 +235,7 @@ public class Screen extends JPanel implements ActionListener {
 		checkCollisions();
         
 		if (player.getHealth()<=0)
-=======
 		if(!menu.getPaused())
->>>>>>> refs/remotes/origin/master
 		{
 			if (gameState == 0) {
 				gameState = 1;

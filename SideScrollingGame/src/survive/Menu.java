@@ -1,6 +1,10 @@
+package survive;
+
 import javax.swing.*;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +25,9 @@ public class Menu extends JDialog implements ActionListener {
 	private Game context;
 	private JButton play;
 	private JButton help;
+	private JButton highScore;
 	private ActionListener actionListener;
+	private final Font font = new Font("Arial", Font.PLAIN, 32);
 
 	public boolean getPaused() {
 		return paused.get();
@@ -29,6 +35,10 @@ public class Menu extends JDialog implements ActionListener {
 	
 	public void setPaused() {
 		paused.set(true);
+		if(running)
+		{
+			play.setText("Resume Game");
+		}
 	}
 	
 	public void setRunning() {
@@ -46,10 +56,10 @@ public class Menu extends JDialog implements ActionListener {
 	}
 	
 	public void initMenu() {
-		setSize(400, 300);
+		setSize(300, 135);
 		JPanel subPanel = new JPanel();
 		subPanel.setSize(400, 300);
-		subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.Y_AXIS));
+		subPanel.setLayout(new BorderLayout());
 		if(running) {
 			play = new JButton("Resume Game");
 		}
@@ -60,17 +70,24 @@ public class Menu extends JDialog implements ActionListener {
 		help = new JButton("Help");
 		help.setActionCommand("help");
 		help.addActionListener(this);
+		help.setFont(font);
 		
 		play.setActionCommand("start");
 		play.addActionListener(this);
+		play.setFont(font);
 		
-		subPanel.add(play);
-		subPanel.add(help);
+		highScore = new JButton("High Scores");
+		highScore.setActionCommand("highScore");
+		highScore.addActionListener(this);
+		highScore.setFont(font);
+		
+		subPanel.add(play, BorderLayout.NORTH);
+		subPanel.add(help, BorderLayout.SOUTH);
+		subPanel.add(highScore, BorderLayout.CENTER);
 		
 		this.add(subPanel);
 		setUndecorated(true);
 		setVisible(true);	
-		pack();
 	}
 	
 }

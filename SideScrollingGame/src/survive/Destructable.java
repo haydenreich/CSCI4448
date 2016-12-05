@@ -1,3 +1,5 @@
+
+package survive;
 import java.awt.Rectangle;
 
 public class Destructable extends Environment{

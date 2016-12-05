@@ -1,3 +1,4 @@
+package survive;
 
 public class PowerupGold extends Powerup{
 	PowerupGold(int x, int y)

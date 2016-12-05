@@ -1,3 +1,4 @@
+package survive;
 //
 //import javax.sound.sampled.*;
 //import javax.swing.*;

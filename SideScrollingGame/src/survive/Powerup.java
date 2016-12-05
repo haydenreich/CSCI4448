@@ -26,6 +26,7 @@ public class Powerup extends Sprite{
 	}
 	public void HandleCollision(Character player)
 	{
+		Sound.powerup.play();
 		vis = false;
 	}
 	public boolean HandleCollision(Environment obj)

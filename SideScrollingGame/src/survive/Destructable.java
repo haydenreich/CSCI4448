@@ -24,6 +24,7 @@ public class Destructable extends Environment{
 		 {
 		 	health = 0;
 		 	broken = true;
+		 	Sound.broken.play();
 		 }
 	 }
 	 public int getHealth()

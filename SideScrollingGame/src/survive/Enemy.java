@@ -18,13 +18,13 @@ public class Enemy extends Sprite{
         else{
         	this.x = x;
         }
+		this.dx = speed;
+		if(rand.nextInt(2)==1) dx=-speed;
         this.y = -200;
         width = 35;
         height = 41;
 		jumpSpeed = 5;
 		falling = true;
-		this.dx = speed;
-		if(rand.nextInt(2)==1) dx=-speed;
     }
 	public void DealDamage(Character player)
 	{
@@ -36,7 +36,11 @@ public class Enemy extends Sprite{
 	public void TakeDamage(int dmg)
 	{
 		health-=dmg;
-		if (health<=0) vis = false;
+		if (health<=0) 
+		{
+			Sound.splat.play();
+			vis = false;
+		}
 	}
 	public void HandleCollision(Character player)
 	{
@@ -47,6 +51,9 @@ public class Enemy extends Sprite{
 	}
 	public void UpdateMovement()
 	{
+        Random rand = new Random();
+		this.dx = speed;
+		if(rand.nextInt(2)==1) dx=-speed;
 		if(blocked)
 			vis = false;
 	}
@@ -67,7 +74,7 @@ public class Enemy extends Sprite{
 	{
 		Rectangle rcThis = this.getBounds();
 		Rectangle rcObj = obj.getBounds();
-    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y && obj.broken == false)
     	{
     		this.SetFalling(false);
     	}

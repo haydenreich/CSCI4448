@@ -81,6 +81,7 @@ public class Character extends Sprite{
 				 if(jump == false && falling == false)
 				 {
 					 dy = 75;
+					 Sound.jump.play();
 					 jump = true;
 				 }
 			 }
@@ -117,6 +118,7 @@ public class Character extends Sprite{
 		 {
 			 if(dmgTimeout==0)
 			 {
+				 if(dmg>0) Sound.hurt.play();
 				 dmgTimeout = 5;
 				 health-=dmg;
 			 }
@@ -157,8 +159,10 @@ public class Character extends Sprite{
 			{
 		    	if (((this.y+this.height-5)<obj.y) && dmgTimeout == 0)
 		    	{
+		    		UpdateScore(strength);
 		    		obj.TakeDamage(strength);
 					 dy = 40;
+					 Sound.jump.play();
 					 jump = true;
 		    	}
 			}
@@ -168,20 +172,25 @@ public class Character extends Sprite{
 			}
 			public boolean HandleCollision(Environment obj)
 			{
+				boolean bResult = true;
 				Rectangle rcThis = this.getBounds();
 				Rectangle rcObj = obj.getBounds();
-		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y && !jump)
+		    	{
+					if(IsFalling()) Sound.fall.play();
 		    		this.SetFalling(false);
+		    		return true;
+		    	}
 		    	else
-		    		this.SetFalling(true);
-		    	return !this.IsFalling();
+		    		return false;
 			}
 			public boolean HandleCollision(Destructable obj)
 			{
 				Rectangle rcThis = this.getBounds();
 				Rectangle rcObj = obj.getBounds();
-		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y && obj.broken == false)
+		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y && obj.broken == false && !jump)
 		    	{
+					if(IsFalling()) Sound.fall.play();
 	        		obj.TakeDamage(2);
 		    		this.SetFalling(false);
 		    	}

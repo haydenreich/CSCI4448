@@ -87,6 +87,9 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
 		
 		
+		environmentObjects.add(new Environment(530, 480, 500, 10));
+		
+		
 		
 		
 		
@@ -114,7 +117,15 @@ public class Screen extends JPanel implements ActionListener {
 		setFocusable(true);
 		ImageIcon icon = new ImageIcon("background.jpg");
 	    image = icon.getImage();
-		//musac
+		//Sound stuff
+	    Sound.theme.setGain(-9.0f);
+	    Sound.broken.setGain(-12.0f);
+	    Sound.hurt.setGain(-15.0f);
+	    Sound.fall.setGain(-18.0f);
+	    Sound.jump.setGain(-15.0f);
+	    Sound.powerup.setGain(-12.0f);
+	    Sound.splat.setGain(-12.0f);
+		Sound.theme.loop();
 		
 		timer = new Timer(DELAY, this);
 		timer.start();
@@ -211,6 +222,7 @@ public class Screen extends JPanel implements ActionListener {
 	@Override
     public void actionPerformed(ActionEvent e) {
 
+		Random rand = new Random();
 		if(!menu.getPaused())
 		{
 			if (gameState == 0) {
@@ -226,10 +238,6 @@ public class Screen extends JPanel implements ActionListener {
 			//update enemies
 			for (Enemy obj : enemyObjects)
 			{
-				obj.UpdateMovement();
-				if (obj.y > 800){
-					obj.setVisible(false);
-				}
 				if(obj instanceof BouncingEnemy){
 					obj.fly();
 				}
@@ -261,6 +269,13 @@ public class Screen extends JPanel implements ActionListener {
 			if (spawnTimer % 150 == 0){
 				Enemy flyer = new BouncingEnemy(-1,1);
 				enemyObjects.add(flyer);
+			}
+			if (spawnTimer % (50 + rand.nextInt(150)) == 0)
+			{
+				for (Enemy obj: enemyObjects)
+				{
+					obj.UpdateMovement();
+				}
 			}
 			if (gameTime == 1000)
 	    	 {

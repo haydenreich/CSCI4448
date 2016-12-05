@@ -37,6 +37,7 @@ public class Screen extends JPanel implements ActionListener {
 	private Timer timer;
 	private int gameTime;
 	private int spawnTimer;
+	private int floordmgTimer;
 	protected Image image;
 	private final int DELAY = 10;
 	private Character player;
@@ -282,9 +283,22 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameState += 1;
 	    		 gameTime = 0;
 	    	 }
+			
+			//fix destructables
 			for(Destructable obj: destructableObjects){
 				if(obj.health == 30) obj.broken = false;
 				if(obj.broken == true) obj.health += 1;
+			}
+			
+			if (player.y >= 639){
+				floordmgTimer += 1;
+				if (floordmgTimer == 100){
+					player.TakeDamage(10);
+					floordmgTimer -= 100;
+				}
+			}
+			else{
+				floordmgTimer = 0;
 			}
 
 			checkCollisions();

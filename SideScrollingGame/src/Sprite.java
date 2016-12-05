@@ -47,6 +47,11 @@ public class Sprite {
 	{
 		this.falling = falling;
 	}
+
+	public boolean IsFalling()
+	{
+		return falling;
+	}
 	public void SetJump(boolean jump)
 	{
 		this.jump = jump;

@@ -17,6 +17,9 @@ public class Enemy extends Sprite{
 	{
 		player.TakeDamage(strength);
 	}
+	public void DealDamage(Destructable obj)
+	{
+	}
 	public void TakeDamage(int dmg)
 	{
 		health-=dmg;

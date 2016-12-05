@@ -272,11 +272,15 @@ public class Screen extends JPanel implements ActionListener {
     		Rectangle rcObj = obj.getBounds();
         	if (!rcObj.intersects(rcPlayer))
         		player.SetFalling(true);
-        	else
+        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
         	{
         		player.SetFalling(false);
         		break;
         	}
+        	//else{
+        		//player.SetFalling(false);
+        		//break;
+        	//}
     	}
 
     	//Check Object collisions

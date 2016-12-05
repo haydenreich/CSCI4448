@@ -77,6 +77,7 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 150, 50, 10));
 		environmentObjects.add(new Environment(-40, 90, 50, 10));
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
+		destructableObjects.add(new Destructable(90,640,50,10));
 		
 		
 		
@@ -91,7 +92,7 @@ public class Screen extends JPanel implements ActionListener {
 		powerupObjects.add(new PowerupHealth(800,1));
 		powerupObjects.add(new PowerupHealth(1000,1));
 		powerupObjects.add(new PowerupHealth(1200,1));
-		powerupObjects.add(new PowerupGold(0,-20));
+		powerupObjects.add(new PowerupGold(0,105));
 		powerupObjects.add(new PowerupGold(100,1));
 		powerupObjects.add(new PowerupGold(300,1));
 		powerupObjects.add(new PowerupGold(500,1));
@@ -141,10 +142,15 @@ public class Screen extends JPanel implements ActionListener {
     	//Draw Destructable objects
     	ListIterator<Destructable> itDestructable = destructableObjects.listIterator(0);
     	while(itDestructable.hasNext()){
-    		Environment obj = itDestructable.next();
+    		Destructable obj = itDestructable.next();
     		if(obj.isVisible())
     		{
-	    		g2d.setColor(obj.getColor());
+    			if(obj.broken == true){
+    				g2d.setColor(Color.red);
+    			}
+    			else{
+    				g2d.setColor(obj.getColor());
+    			}
 	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
     		}
     		else
@@ -250,7 +256,10 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameState += 1;
 	    		 gameTime = 0;
 	    	 }
-
+			for(Destructable obj: destructableObjects){
+				if(obj.health == 100) obj.broken = false;
+				if(obj.broken == true) obj.health += 1;
+			}
 
 			checkCollisions();
 
@@ -318,9 +327,10 @@ public class Screen extends JPanel implements ActionListener {
 	    		Rectangle rcObj = obj.getBounds();
 	        	if (!rcObj.intersects(rcPlayer))
 	        		player.SetFalling(true);
-	        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
+	        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y && obj.broken == false)
 	        	{
 	        		player.SetFalling(false);
+	        		obj.TakeDamage(2);
 	        		break;
 	        	}
 	    	}
@@ -377,7 +387,7 @@ public class Screen extends JPanel implements ActionListener {
 	        		obj.SetFalling(true);
 	        	else
 	        	{
-	        		obj.DealDamage(obj2);
+	        		//obj.DealDamage(obj2);
 	        		break;
 	        	}
 	    	}

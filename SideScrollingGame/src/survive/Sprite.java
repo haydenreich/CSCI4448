@@ -9,19 +9,19 @@ import javax.swing.ImageIcon;
 
 @MappedSuperclass
 public class Sprite {
-	protected int dx;
-	protected int dy;
-	protected int x;
-	protected int y;
-    protected int width;
-    protected int height;
-    protected int jumpSpeed;
-    protected boolean vis;
-    protected boolean jump;
-    protected boolean falling;
-    protected boolean blocked;
-	protected Image image;
-    protected int pushed;
+	protected transient int dx;
+	protected transient int dy;
+	protected transient int x;
+	protected transient int y;
+    protected transient int width;
+    protected transient int height;
+    protected transient int jumpSpeed;
+    protected transient boolean vis;
+    protected transient boolean jump;
+    protected transient boolean falling;
+    protected transient boolean blocked;
+	protected transient Image image;
+    protected transient int pushed;
 	
 	public Sprite()
 	{

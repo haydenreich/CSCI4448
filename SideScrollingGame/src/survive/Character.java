@@ -15,16 +15,17 @@ import javax.persistence.Table;
 @Table(name = "HIGH_SCORES")
 public class Character extends Sprite{
 		
-		int health;
-		int strength;
-		int speed;
+		transient int health;
+		transient int strength;
+		transient int speed;
 		@Column(name = "SCORE")
-		protected int score;
-		protected int dmgTimeout;
-		protected boolean leftPressed;
-		protected boolean rightPressed;
+		protected transient int score;
+		protected transient int dmgTimeout;
+		protected transient boolean leftPressed;
+		protected transient boolean rightPressed;
 		@Column(name = "PLAYER")
 		protected String name;
+		
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		protected long id_no;

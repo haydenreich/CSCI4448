@@ -55,7 +55,10 @@ public class Enemy extends Sprite{
 		Rectangle rcThis = this.getBounds();
 		Rectangle rcObj = obj.getBounds();
     	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+    	{
     		this.SetFalling(false);
+    		if(this.y+this.height>=680) vis = false;
+    	}
     	else
     		this.SetFalling(true);
     	return !this.IsFalling();

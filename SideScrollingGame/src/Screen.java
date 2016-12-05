@@ -59,6 +59,24 @@ public class Screen extends JPanel implements ActionListener {
 		
 		//The Level
 		environmentObjects.add(new Environment(0, 680, 1280, 5));
+		environmentObjects.add(new Environment(20, 640, 50, 10));
+		environmentObjects.add(new Environment(100, 580, 50, 10));
+		environmentObjects.add(new Environment(20, 510, 50, 10));
+		environmentObjects.add(new Environment(20, 480, 50, 10));
+		environmentObjects.add(new Environment(170, 480, 50, 10));
+		environmentObjects.add(new Environment(20, 450, 50, 10));
+		environmentObjects.add(new Environment(20, 420, 50, 10));
+		environmentObjects.add(new Environment(170, 390, 50, 10));
+		environmentObjects.add(new Environment(220, 350, 50, 10));
+		environmentObjects.add(new Environment(170, 310, 50, 10));
+		environmentObjects.add(new Environment(220, 270, 50, 10));
+		environmentObjects.add(new Environment(-40, 270, 50, 10));
+		environmentObjects.add(new Environment(170, 230, 50, 10));
+		environmentObjects.add(new Environment(-40, 210, 50, 10));
+		environmentObjects.add(new Environment(170, 180, 50, 10));
+		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		environmentObjects.add(new Environment(-40, 90, 50, 10));
+		environmentObjects.add(new Environment(-40, 30, 50, 10));
 		
 		
 		
@@ -66,14 +84,14 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
-		powerupObjects.add(new PowerupHealth(0,1));
+		//powerupObjects.add(new PowerupHealth(0,1));
 		powerupObjects.add(new PowerupHealth(200,1));
 		powerupObjects.add(new PowerupHealth(400,1));
 		powerupObjects.add(new PowerupHealth(600,1));
 		powerupObjects.add(new PowerupHealth(800,1));
 		powerupObjects.add(new PowerupHealth(1000,1));
 		powerupObjects.add(new PowerupHealth(1200,1));
-		powerupObjects.add(new PowerupGold(0,1));
+		powerupObjects.add(new PowerupGold(0,-20));
 		powerupObjects.add(new PowerupGold(100,1));
 		powerupObjects.add(new PowerupGold(300,1));
 		powerupObjects.add(new PowerupGold(500,1));

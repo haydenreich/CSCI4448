@@ -11,7 +11,6 @@ public class BouncingEnemy extends Enemy {
 		this.y = rand.nextInt(600) + 1;
 		width = 40;
 		height = 40;
-		
 	}
 
 }

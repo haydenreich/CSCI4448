@@ -18,7 +18,7 @@ public class Environment{
 		this.y = y;
 		this.width = w;
 		this.height = h;
-		this.color = color.WHITE;
+		this.color = color.white;
 	}
 	 public int getX(){
 		 return x;

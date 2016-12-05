@@ -15,8 +15,8 @@ public class Character extends Sprite{
 		private void initChar() {
 	        
 	        setImage("sprite.png");
-	        x = 50;
-	        y = 200;
+	        x = 30;
+	        y = 600;
 	        width = 35;
 	        height = 41;
 			jumpSpeed = 5;
@@ -48,7 +48,7 @@ public class Character extends Sprite{
 			 {
 				 if(jump == false && falling == false)
 				 {
-					 dy = 100;
+					 dy = 75;
 					 jump = true;
 				 }
 			 }

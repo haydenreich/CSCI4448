@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Character extends Sprite{
@@ -21,7 +22,7 @@ public class Character extends Sprite{
 	        height = 82;
 			jumpSpeed = 5;
 			health = 1000;
-			strength = 10;
+			strength = 500;
 			speed = 3;
 			score = 0;
 			leftPressed = false;
@@ -48,7 +49,7 @@ public class Character extends Sprite{
 			 {
 				 if(jump == false && falling == false)
 				 {
-					 dy = 100;
+					 dy = 120;
 					 jump = true;
 				 }
 			 }
@@ -112,6 +113,26 @@ public class Character extends Sprite{
 				height = 82;
 			 dx = speed;
 		 }
+			public void HandleCollision(Enemy obj)
+			{
+		    	if ((this.y+this.height-5)<obj.y)
+		    	{
+		    		obj.TakeDamage(strength);
+					 dy = 40;
+					 jump = true;
+		    	}
+			}
+			public boolean HandleCollision(Environment obj)
+			{
+				Rectangle rcThis = this.getBounds();
+				Rectangle rcObj = obj.getBounds();
+		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+		    		this.SetFalling(false);
+		    	else
+		    		this.SetFalling(true);
+		    	return !this.IsFalling();
+			}
+
 		//Dimension size = getSize();
 		//double w = size.getWidth();
 		//double h = size.getHeight();

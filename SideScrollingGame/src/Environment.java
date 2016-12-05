@@ -51,5 +51,4 @@ public class Environment{
 	public void setVisible(Boolean visible) {
 	    vis = visible;
 	}
-	
 }

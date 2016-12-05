@@ -1,3 +1,5 @@
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 
 public class Powerup extends Sprite{
@@ -23,5 +25,16 @@ public class Powerup extends Sprite{
 	}
 	public void HandleCollision(Character player)
 	{
+		vis = false;
+	}
+	public boolean HandleCollision(Environment obj)
+	{
+		Rectangle rcThis = this.getBounds();
+		Rectangle rcObj = obj.getBounds();
+    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
+    		this.SetFalling(false);
+    	else
+    		this.SetFalling(true);
+    	return !this.IsFalling();
 	}
 }

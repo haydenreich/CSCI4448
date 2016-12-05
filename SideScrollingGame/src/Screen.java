@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
+import javax.sound.sampled.*;
 
 import javax.swing.*;
 
@@ -58,7 +59,7 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 620, 1280, 100));
+		environmentObjects.add(new EnvironmentSolid(0, 620, 1280, 100));
 		destructableObjects.add(new Destructable(0,300,50,25)); 
 		destructableObjects.add(new Destructable(50,300,50,25)); 
 		destructableObjects.add(new Destructable(100,300,50,25)); 
@@ -90,7 +91,7 @@ public class Screen extends JPanel implements ActionListener {
 		
 		
 		player = new Character();
-		Enemy enemy = new Enemy(500, 200);
+		Enemy enemy = new EnemyType0(500, 200);
 		enemyObjects.add(enemy);
 		powerupObjects.add(new PowerupHealth(0,1));
 		powerupObjects.add(new PowerupHealth(200,1));
@@ -113,7 +114,7 @@ public class Screen extends JPanel implements ActionListener {
 		setFocusable(true);
 		ImageIcon icon = new ImageIcon("background.jpg");
 	    image = icon.getImage();
-		
+		//musac
 		
 		timer = new Timer(DELAY, this);
 		timer.start();
@@ -218,6 +219,7 @@ public class Screen extends JPanel implements ActionListener {
 			//update enemies
 			for (Enemy obj : enemyObjects)
 			{
+				obj.UpdateMovement();
 				if(obj instanceof BouncingEnemy){
 					obj.fly();
 				}
@@ -239,7 +241,7 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new Enemy(1,1);
+				Enemy enemy = new EnemyType0(1,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 500 == 0){
@@ -297,39 +299,22 @@ public class Screen extends JPanel implements ActionListener {
 	}
     private void checkCollisions()
     {
+    	//result
+    	boolean bResult = false;
     	//Bounding box representing the player
     	Rectangle rcPlayer = player.getBounds();
     	
     	//Check player against environment
     	for (Environment obj : environmentObjects)
     	{
-    		Rectangle rcObj = obj.getBounds();
-        	if (!rcObj.intersects(rcPlayer))
-        		player.SetFalling(true);
-        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
-        	{
-        		player.SetFalling(false);
-        		break;
-        	}
-        	//else{
-        		//player.SetFalling(false);
-        		//break;
-        	//}
+    		bResult = player.HandleCollision(obj);
+    		if (bResult) break;
     	}
-    	if (player.IsFalling())
-    	{
+    	if(!bResult)
 	    	for (Destructable obj : destructableObjects)
 	    	{
-	    		Rectangle rcObj = obj.getBounds();
-	        	if (!rcObj.intersects(rcPlayer))
-	        		player.SetFalling(true);
-	        	else if (rcObj.intersects(rcPlayer) && (player.y+player.height-5)<obj.y)
-	        	{
-	        		player.SetFalling(false);
-	        		break;
-	        	}
+	    		if (player.HandleCollision(obj)) break;
 	    	}
-    	}
     	//Check Object collisions
     	for (Powerup obj : powerupObjects)
     	{    	
@@ -337,20 +322,19 @@ public class Screen extends JPanel implements ActionListener {
     		//Check ground collision
     		for (Environment obj2 : environmentObjects)
 	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.SetFalling(false);
-	        		break;
-	        	}
+    			bResult = obj.HandleCollision(obj2);
+        		if (bResult) break;
 	    	}
+    		if (!bResult)
+	    		//Check Destructable collision
+	        	for (Destructable obj2 : destructableObjects)
+	        	{
+	        		if (obj.HandleCollision(obj2)) break;
+	        	}
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
     			obj.HandleCollision(player);
-    			obj.setVisible(false);
     		}
     	}
     	
@@ -361,35 +345,20 @@ public class Screen extends JPanel implements ActionListener {
     		//Check Environment collision
     		for (Environment obj2 : environmentObjects)
 	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.SetFalling(false);
-//	        		Random rand = new Random();
-//	        		obj.x = rand.nextInt(1210) + 1;
-//	        		obj.y = 0;
-//	        		repaint();
-	        		break;
-	        	}
+    			bResult = obj.HandleCollision(obj2);
+        		if (bResult) break;
 	    	}
     		//Check Destructable collision
-    		for (Destructable obj2 : destructableObjects)
-	    	{
-	    		Rectangle rcObj2 = obj2.getBounds();
-	        	if (!rcObj.intersects(rcObj2))
-	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.DealDamage(obj2);
-	        		break;
-	        	}
-	    	}
+    		if (!bResult)
+	    		for (Destructable obj2 : destructableObjects)
+		    	{
+	        		if(obj.HandleCollision(obj2)) break;
+		    	}
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
-    			obj.DealDamage(player);
+    			player.HandleCollision(obj);
+    			obj.HandleCollision(player);
     		}
     	}
     }

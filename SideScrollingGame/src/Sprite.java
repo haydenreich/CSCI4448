@@ -15,21 +15,31 @@ public class Sprite {
     protected boolean vis;
     protected boolean jump;
     protected boolean falling;
+    protected boolean blocked;
 	protected Image image;
 	
 	public Sprite()
 	{
 		vis = true;
-		falling = false;
+		falling = true;
+		blocked = false;
 	}
 	
 	public void move(){
+		blocked = false;
 		if(x>0 && x<1210) x += dx;
 		if (jump) jump();
 		else if (falling) fall();
-		else if(x <= 0) x+=1;
-		else if(x>= 1210) x-=1;
-		else y+=dy;
+		else if(x <= 0) 
+		{
+			x+=1;
+			blocked = true;
+		}
+		else if(x>= 1210) 
+		{
+			x-=1;
+			blocked = true;
+		}
 	}
 	
 	public void jump()
@@ -43,7 +53,8 @@ public class Sprite {
 	}
 	public void fall()
 	{
-		y+=5;
+		if(!jump)
+			y+=5;
 	}
 	public void fly()
 	{

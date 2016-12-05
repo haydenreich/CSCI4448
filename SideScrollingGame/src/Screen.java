@@ -40,11 +40,9 @@ public class Screen extends JPanel implements ActionListener {
 	private ArrayList<Enemy> enemyObjects;
 	private ArrayList<Powerup> powerupObjects;
 	private JFrame topFrame;
-	private int score;
 	private int gameState;
 	public Screen(Menu m){
 		topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-		score = 0;
 		gameState = 0;
 		menu = m;
 		initObjects();
@@ -94,20 +92,20 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
-		Powerup powerup = new Powerup(0,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(200,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(400,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(600,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(800,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(1000,1);
-		powerupObjects.add(powerup);
-		powerup = new Powerup(1200,1);
-		powerupObjects.add(powerup);
+		powerupObjects.add(new PowerupHealth(0,1));
+		powerupObjects.add(new PowerupHealth(200,1));
+		powerupObjects.add(new PowerupHealth(400,1));
+		powerupObjects.add(new PowerupHealth(600,1));
+		powerupObjects.add(new PowerupHealth(800,1));
+		powerupObjects.add(new PowerupHealth(1000,1));
+		powerupObjects.add(new PowerupHealth(1200,1));
+		powerupObjects.add(new PowerupGold(0,1));
+		powerupObjects.add(new PowerupGold(100,1));
+		powerupObjects.add(new PowerupGold(300,1));
+		powerupObjects.add(new PowerupGold(500,1));
+		powerupObjects.add(new PowerupGold(700,1));
+		powerupObjects.add(new PowerupGold(900,1));
+		powerupObjects.add(new PowerupGold(1100,1));
 	}
 	
 	private void initScreen(){
@@ -194,7 +192,7 @@ public class Screen extends JPanel implements ActionListener {
     	
 		StringBuilder scoreString = new StringBuilder();
     	Formatter scoreFormatter = new Formatter(scoreString, Locale.US);
-    	scoreFormatter.format("Score: %d", score);
+    	scoreFormatter.format("Score: %d", player.getScore());
 		
     	g2d.setColor(Color.green);
     	g2d.setFont(small);
@@ -351,6 +349,7 @@ public class Screen extends JPanel implements ActionListener {
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
+    			obj.HandleCollision(player);
     			obj.setVisible(false);
     		}
     	}

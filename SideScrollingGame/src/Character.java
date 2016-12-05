@@ -5,6 +5,7 @@ public class Character extends Sprite{
 		int health;
 		int strength;
 		int speed;
+		protected int score;
 		protected boolean leftPressed;
 		protected boolean rightPressed;
 		public Character(){
@@ -22,6 +23,7 @@ public class Character extends Sprite{
 			health = 1000;
 			strength = 10;
 			speed = 3;
+			score = 0;
 			leftPressed = false;
 			rightPressed = false;
 	    }
@@ -87,6 +89,14 @@ public class Character extends Sprite{
 		 public int getHealth()
 		 {
 			 return health;
+		 }
+		 public int getScore()
+		 {
+			 return score;
+		 }
+		 public void UpdateScore(int score)
+		 {
+			 this.score+=score;
 		 }
 		 private void Left()
 		 {

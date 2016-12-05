@@ -32,9 +32,15 @@ public class Character extends Sprite{
 				 dy = 1;
 			 }*/
 			 if(key == KeyEvent.VK_LEFT){
+				 setImage("spriteL.png");
+			        width = 70;
+			        height = 82;
 				 dx = -speed;
 			 }
 			 if(key == KeyEvent.VK_RIGHT){
+				 setImage("sprite.png");
+					width = 70;
+					height = 82;
 				 dx = speed;
 			 }
 			 if (key == KeyEvent.VK_SPACE)

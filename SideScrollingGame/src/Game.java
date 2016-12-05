@@ -10,8 +10,8 @@ public class Game extends JFrame {
 	private Menu menu;
 	
 	void initUI() {
-		add(new Screen());
-		menu = new Menu();
+		menu = new Menu(false);
+		add(new Screen(menu));
 		setSize(1280,720);
 		setTitle("Survive");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

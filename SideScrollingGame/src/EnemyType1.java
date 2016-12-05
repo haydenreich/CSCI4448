@@ -5,6 +5,8 @@ public class EnemyType1 extends Enemy{
 	{
 		super(x,y);
         setImage("crazyenemy.png");
+        width = 200;
+        height = 200;
 	}
 	@Override
 	public void DealDamage(Destructable obj)

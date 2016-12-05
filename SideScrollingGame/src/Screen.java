@@ -58,33 +58,7 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 620, 1280, 100));
-		destructableObjects.add(new Destructable(0,300,50,25)); 
-		destructableObjects.add(new Destructable(50,300,50,25)); 
-		destructableObjects.add(new Destructable(100,300,50,25)); 
-		destructableObjects.add(new Destructable(150,300,50,25)); 
-		destructableObjects.add(new Destructable(200,300,50,25)); 
-		destructableObjects.add(new Destructable(400,300,50,25)); 
-		destructableObjects.add(new Destructable(450,300,50,25)); 
-		destructableObjects.add(new Destructable(650,300,50,25)); 
-		destructableObjects.add(new Destructable(700,300,50,25)); 
-		destructableObjects.add(new Destructable(750,300,50,25)); 
-		destructableObjects.add(new Destructable(800,300,50,25)); 
-		destructableObjects.add(new Destructable(850,300,50,25)); 
-		destructableObjects.add(new Destructable(900,300,50,25)); 
-		destructableObjects.add(new Destructable(0,500,50,25)); 
-		destructableObjects.add(new Destructable(50,500,50,25)); 
-		destructableObjects.add(new Destructable(100,500,50,25)); 
-		destructableObjects.add(new Destructable(150,500,50,25)); 
-		destructableObjects.add(new Destructable(200,500,50,25)); 
-		destructableObjects.add(new Destructable(400,500,50,25)); 
-		destructableObjects.add(new Destructable(450,500,50,25)); 
-		destructableObjects.add(new Destructable(650,500,50,25)); 
-		destructableObjects.add(new Destructable(700,500,50,25)); 
-		destructableObjects.add(new Destructable(750,500,50,25)); 
-		destructableObjects.add(new Destructable(800,500,50,25)); 
-		destructableObjects.add(new Destructable(850,500,50,25)); 
-		destructableObjects.add(new Destructable(900,500,50,25)); 
+		environmentObjects.add(new Environment(0, 680, 1280, 5));
 		
 		
 		
@@ -218,6 +192,9 @@ public class Screen extends JPanel implements ActionListener {
 			//update enemies
 			for (Enemy obj : enemyObjects)
 			{
+				if (obj.y > 800){
+					obj.setVisible(false);
+				}
 				if(obj instanceof BouncingEnemy){
 					obj.fly();
 				}
@@ -239,15 +216,15 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new Enemy(1,1);
+				Enemy enemy = new Enemy(-1,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 500 == 0){
-				Enemy enemy = new EnemyType1(1,1);
+				Enemy enemy = new EnemyType1(player.x,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 150 == 0){
-				Enemy flyer = new BouncingEnemy(0,1);
+				Enemy flyer = new BouncingEnemy(-1,1);
 				enemyObjects.add(flyer);
 			}
 			if (gameTime == 1000)
@@ -364,15 +341,6 @@ public class Screen extends JPanel implements ActionListener {
 	    		Rectangle rcObj2 = obj2.getBounds();
 	        	if (!rcObj.intersects(rcObj2))
 	        		obj.SetFalling(true);
-	        	else
-	        	{
-	        		obj.SetFalling(false);
-//	        		Random rand = new Random();
-//	        		obj.x = rand.nextInt(1210) + 1;
-//	        		obj.y = 0;
-//	        		repaint();
-	        		break;
-	        	}
 	    	}
     		//Check Destructable collision
     		for (Destructable obj2 : destructableObjects)
@@ -389,6 +357,9 @@ public class Screen extends JPanel implements ActionListener {
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
+    			if (obj instanceof BouncingEnemy){
+    				obj.setVisible(false);
+    			}
     			obj.DealDamage(player);
     		}
     	}

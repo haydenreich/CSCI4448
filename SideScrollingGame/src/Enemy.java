@@ -7,8 +7,13 @@ public class Enemy extends Sprite{
 	public Enemy(int x, int y) {
         Random rand = new Random();
         setImage("enemy.png");
-        this.x = rand.nextInt(1210) + 1;
-        this.y = 0;
+        if (x == -1){
+        	this.x = rand.nextInt(1210) + 1;
+        }
+        else{
+        	this.x = x;
+        }
+        this.y = -200;
         width = 70;
         height = 82;
 		jumpSpeed = 5;

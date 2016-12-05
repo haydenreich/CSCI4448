@@ -58,15 +58,15 @@ public class Screen extends JPanel implements ActionListener {
 		powerupObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 620, 1280, 100));
-		environmentObjects.add(new Destructable(0,300,50,25)); 
-		environmentObjects.add(new Destructable(50,300,50,25)); 
-		environmentObjects.add(new Destructable(100,300,50,25)); 
-		environmentObjects.add(new Destructable(150,300,50,25)); 
-		environmentObjects.add(new Destructable(200,300,50,25)); 
-		environmentObjects.add(new Destructable(400,300,50,25)); 
-		environmentObjects.add(new Destructable(450,300,50,25)); 
-		environmentObjects.add(new Destructable(650,300,50,25)); 
+		environmentObjects.add(new Environment(0, 680, 1280, 5));
+		environmentObjects.add(new Destructable(0,300,50,10)); 
+		environmentObjects.add(new Destructable(50,300,50,10)); 
+		environmentObjects.add(new Destructable(100,300,50,10)); 
+		environmentObjects.add(new Destructable(150,300,50,10)); 
+		environmentObjects.add(new Destructable(200,300,50,10)); 
+		environmentObjects.add(new Destructable(400,300,50,10)); 
+		environmentObjects.add(new Destructable(450,300,50,10)); 
+		environmentObjects.add(new Destructable(650,300,50,10)); 
 		
 		
 		

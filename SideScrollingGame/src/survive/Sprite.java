@@ -1,9 +1,13 @@
+package survive;
+
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.Random;
 
+import javax.persistence.MappedSuperclass;
 import javax.swing.ImageIcon;
 
+@MappedSuperclass
 public class Sprite {
 	protected int dx;
 	protected int dy;

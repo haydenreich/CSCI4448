@@ -1,3 +1,5 @@
+package survive;
+
 import java.util.Random;
 
 public class BouncingEnemy extends Enemy {

@@ -1,6 +1,7 @@
-
+package survive;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Game extends JFrame {
 	public Game() {
@@ -18,6 +19,7 @@ public class Game extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
+	
 	
 	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable(){

@@ -1,13 +1,30 @@
+package survive;
 import java.awt.event.KeyEvent;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "HIGH_SCORES")
 public class Character extends Sprite{
 		
 		int health;
 		int strength;
 		int speed;
+		@Column(name = "SCORE")
 		protected int score;
 		protected boolean leftPressed;
 		protected boolean rightPressed;
+		@Column(name = "PLAYER")
+		protected String name;
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		protected long id_no;
+		
 		public Character(){
 			initChar();
 		}
@@ -26,6 +43,7 @@ public class Character extends Sprite{
 			score = 0;
 			leftPressed = false;
 			rightPressed = false;
+			name = "";
 	    }
 		 
 		 public void keyPressed(KeyEvent e){
@@ -97,6 +115,11 @@ public class Character extends Sprite{
 		 public void UpdateScore(int score)
 		 {
 			 this.score+=score;
+		 }
+		 
+		 public void setName(String aName)
+		 {
+			 name = aName;
 		 }
 		 private void Left()
 		 {

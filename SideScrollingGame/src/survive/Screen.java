@@ -1,3 +1,4 @@
+package survive;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -23,6 +24,9 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.swing.*;
 
@@ -210,6 +214,7 @@ public class Screen extends JPanel implements ActionListener {
 			if (gameState == 0) {
 				gameState = 1;
 				menu.dispose();
+				menu.setRunning();
 			}
 		
 			//update player
@@ -262,13 +267,37 @@ public class Screen extends JPanel implements ActionListener {
 			if (player.getHealth()<=0)
 			{
 				gameState = 0;
+				gameOver();
 				initObjects();
+				initScreen();
 			}
 
 
 			repaint(); 
 		}
     }
+	
+	public void gameOver() {
+		String name;
+		JFrame frame = new JFrame();
+		name = (String)JOptionPane.showInputDialog(frame,
+				"Congratulations!\n" +
+				"Save your high score!\n" +
+				"Please enter your name:",
+				"");
+		player.setName(name);
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		session.beginTransaction();
+		
+		session.save(player);
+		
+		session.getTransaction().commit();
+		session.close();
+		sessionFactory.close();
+	}
+	
     private class TAdapter extends KeyAdapter {
 
         @Override

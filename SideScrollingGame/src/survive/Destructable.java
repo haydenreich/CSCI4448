@@ -1,3 +1,4 @@
+package survive;
 
 public class Destructable extends Environment{
 

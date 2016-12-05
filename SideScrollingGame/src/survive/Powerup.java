@@ -1,3 +1,5 @@
+package survive;
+
 import javax.swing.ImageIcon;
 
 public class Powerup extends Sprite{

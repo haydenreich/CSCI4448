@@ -1,3 +1,4 @@
+package survive;
 
 public class PowerupHealth extends Powerup {
 	public PowerupHealth(int x, int y)

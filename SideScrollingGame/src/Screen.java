@@ -242,6 +242,7 @@ public class Screen extends JPanel implements ActionListener {
 			}
 		
 			//update player
+			player.Update();
 			player.move();
 
 			//update enemies

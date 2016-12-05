@@ -5,4 +5,13 @@ public class EnemyType0 extends Enemy{
 	{
 		super(x,y, "enemy.png");
 	}
+	@Override
+	public void HandleCollision(Character player)
+	{
+    	super.HandleCollision(player);
+    	if(dx<0)
+    		player.Push(-4);
+    	else
+    		player.Push(4);
+	}
 }

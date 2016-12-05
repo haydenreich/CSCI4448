@@ -21,18 +21,20 @@ public class Sprite {
     protected boolean falling;
     protected boolean blocked;
 	protected Image image;
+    protected int pushed;
 	
 	public Sprite()
 	{
 		vis = true;
 		falling = true;
 		blocked = false;
+		pushed = 0;
 	}
 	
 	public void move(){
 		blocked = false;
 		//if(x>0 && x<1210) x += dx;
-		if(x>0 && x<1245) x += dx;
+		if(x>0 && x<1245) x += dx+pushed;
 		if (jump) jump();
 		else if (falling) fall();
 		else if(x <= 0) 
@@ -98,6 +100,12 @@ public class Sprite {
 	 }
 	 public int getY(){
 		 return y;
+	 }
+	 public int getDX(){
+		 return dx;
+	 }
+	 public int getDY(){
+		 return dy;
 	 }
 	 public int getWidth()
 	 {

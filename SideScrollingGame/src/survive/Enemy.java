@@ -19,8 +19,8 @@ public class Enemy extends Sprite{
         	this.x = x;
         }
         this.y = -200;
-        width = 70;
-        height = 82;
+        width = 35;
+        height = 41;
 		jumpSpeed = 5;
 		falling = true;
 		this.dx = speed;
@@ -48,7 +48,7 @@ public class Enemy extends Sprite{
 	public void UpdateMovement()
 	{
 		if(blocked)
-			dx*=-1;
+			vis = false;
 	}
 	public boolean HandleCollision(Environment obj)
 	{
@@ -66,7 +66,6 @@ public class Enemy extends Sprite{
 		Rectangle rcObj = obj.getBounds();
     	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
     	{
-    		DealDamage(obj);
     		this.SetFalling(false);
     	}
     	else

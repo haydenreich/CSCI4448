@@ -54,6 +54,10 @@ public class Character extends Sprite{
 		public void Update()
 		{
 			if(dmgTimeout>0) dmgTimeout--;
+			else
+			{
+				pushed = 0;
+			}
 		}
 		
 		 public void keyPressed(KeyEvent e){
@@ -157,6 +161,10 @@ public class Character extends Sprite{
 					 dy = 40;
 					 jump = true;
 		    	}
+			}
+			public void Push(int push)
+			{
+		    		pushed=push;
 			}
 			public boolean HandleCollision(Environment obj)
 			{

@@ -58,7 +58,7 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects = new ArrayList<>();
 		
 		//The Level
-		environmentObjects.add(new Environment(0, 680, 1280, 5));
+		environmentObjects.add(new Environment(0, 680, 1280, 15));
 		//destructableObjects.add(new Destructable(0,300,50,25)); 
 		
 		

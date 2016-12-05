@@ -7,9 +7,20 @@ public class Enemy extends Sprite{
 	
 	public Enemy(int x, int y, String path) {
         Random rand = new Random();
+<<<<<<< HEAD
         setImage(path);
         this.x = rand.nextInt(1210) + 1;
         this.y = 0;
+=======
+        setImage("enemy.png");
+        if (x == -1){
+        	this.x = rand.nextInt(1210) + 1;
+        }
+        else{
+        	this.x = x;
+        }
+        this.y = -200;
+>>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
         width = 70;
         height = 82;
 		jumpSpeed = 5;

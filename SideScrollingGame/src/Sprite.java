@@ -26,10 +26,15 @@ public class Sprite {
 	}
 	
 	public void move(){
+<<<<<<< HEAD
 		blocked = false;
 		if(x>0 && x<1210) x += dx;
+=======
+		if(x>0 && x<1245) x += dx;
+>>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
 		if (jump) jump();
 		else if (falling) fall();
+<<<<<<< HEAD
 		else if(x <= 0) 
 		{
 			x+=1;
@@ -40,6 +45,11 @@ public class Sprite {
 			x-=1;
 			blocked = true;
 		}
+=======
+		else if(x <= 0) x+=1;
+		else if(x>= 1245) x-=1;
+		else y+=dy;
+>>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
 	}
 	
 	public void jump()
@@ -60,6 +70,8 @@ public class Sprite {
 	{
 		x+=6;
 		if (x >= 1280){
+			
+			
 			x = 0;
 			Random rand = new Random();
 			y = rand.nextInt(600) + 1;

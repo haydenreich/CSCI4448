@@ -86,6 +86,26 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects.add(new Destructable(800,500,50,25)); 
 		destructableObjects.add(new Destructable(850,500,50,25)); 
 		destructableObjects.add(new Destructable(900,500,50,25)); 
+		environmentObjects.add(new Environment(0, 680, 1280, 5));
+		environmentObjects.add(new Environment(20, 640, 50, 10));
+		environmentObjects.add(new Environment(100, 580, 50, 10));
+		environmentObjects.add(new Environment(20, 510, 50, 10));
+		environmentObjects.add(new Environment(20, 480, 50, 10));
+		environmentObjects.add(new Environment(170, 480, 50, 10));
+		environmentObjects.add(new Environment(20, 450, 50, 10));
+		environmentObjects.add(new Environment(20, 420, 50, 10));
+		environmentObjects.add(new Environment(170, 390, 50, 10));
+		environmentObjects.add(new Environment(220, 350, 50, 10));
+		environmentObjects.add(new Environment(170, 310, 50, 10));
+		environmentObjects.add(new Environment(220, 270, 50, 10));
+		environmentObjects.add(new Environment(-40, 270, 50, 10));
+		environmentObjects.add(new Environment(170, 230, 50, 10));
+		environmentObjects.add(new Environment(-40, 210, 50, 10));
+		environmentObjects.add(new Environment(170, 180, 50, 10));
+		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		environmentObjects.add(new Environment(-40, 90, 50, 10));
+		environmentObjects.add(new Environment(-40, 30, 50, 10));
+		destructableObjects.add(new Destructable(90,640,50,10));
 		
 		
 		
@@ -93,14 +113,14 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Enemy enemy = new EnemyType0(500, 200);
 		enemyObjects.add(enemy);
-		powerupObjects.add(new PowerupHealth(0,1));
+		//powerupObjects.add(new PowerupHealth(0,1));
 		powerupObjects.add(new PowerupHealth(200,1));
 		powerupObjects.add(new PowerupHealth(400,1));
 		powerupObjects.add(new PowerupHealth(600,1));
 		powerupObjects.add(new PowerupHealth(800,1));
 		powerupObjects.add(new PowerupHealth(1000,1));
 		powerupObjects.add(new PowerupHealth(1200,1));
-		powerupObjects.add(new PowerupGold(0,1));
+		powerupObjects.add(new PowerupGold(0,105));
 		powerupObjects.add(new PowerupGold(100,1));
 		powerupObjects.add(new PowerupGold(300,1));
 		powerupObjects.add(new PowerupGold(500,1));
@@ -150,10 +170,15 @@ public class Screen extends JPanel implements ActionListener {
     	//Draw Destructable objects
     	ListIterator<Destructable> itDestructable = destructableObjects.listIterator(0);
     	while(itDestructable.hasNext()){
-    		Environment obj = itDestructable.next();
+    		Destructable obj = itDestructable.next();
     		if(obj.isVisible())
     		{
-	    		g2d.setColor(obj.getColor());
+    			if(obj.broken == true){
+    				g2d.setColor(Color.red);
+    			}
+    			else{
+    				g2d.setColor(obj.getColor());
+    			}
 	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
     		}
     		else
@@ -220,6 +245,9 @@ public class Screen extends JPanel implements ActionListener {
 			for (Enemy obj : enemyObjects)
 			{
 				obj.UpdateMovement();
+				if (obj.y > 800){
+					obj.setVisible(false);
+				}
 				if(obj instanceof BouncingEnemy){
 					obj.fly();
 				}
@@ -245,11 +273,11 @@ public class Screen extends JPanel implements ActionListener {
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 500 == 0){
-				Enemy enemy = new EnemyType1(1,1);
+				Enemy enemy = new EnemyType1(player.x,1);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 150 == 0){
-				Enemy flyer = new BouncingEnemy(0,1);
+				Enemy flyer = new BouncingEnemy(-1,1);
 				enemyObjects.add(flyer);
 			}
 			if (gameTime == 1000)
@@ -257,7 +285,10 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameState += 1;
 	    		 gameTime = 0;
 	    	 }
-
+			for(Destructable obj: destructableObjects){
+				if(obj.health == 100) obj.broken = false;
+				if(obj.broken == true) obj.health += 1;
+			}
 
 			checkCollisions();
 
@@ -357,6 +388,9 @@ public class Screen extends JPanel implements ActionListener {
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
+    			if (obj instanceof BouncingEnemy){
+    				obj.setVisible(false);
+    			}
     			player.HandleCollision(obj);
     			obj.HandleCollision(player);
     		}

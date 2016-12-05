@@ -16,10 +16,10 @@ public class Character extends Sprite{
 		private void initChar() {
 	        
 	        setImage("sprite.png");
-	        x = 50;
-	        y = 200;
-	        width = 70;
-	        height = 82;
+	        x = 30;
+	        y = 600;
+	        width = 35;
+	        height = 41;
 			jumpSpeed = 5;
 			health = 1000;
 			strength = 500;
@@ -102,15 +102,15 @@ public class Character extends Sprite{
 		 private void Left()
 		 {
 			 setImage("spriteL.png");
-		        width = 70;
-		        height = 82;
+		        width = 35;
+		        height = 41;
 			 dx = -speed;
 		 }
 		 private void Right()
 		 {
 			 setImage("sprite.png");
-				width = 70;
-				height = 82;
+				width = 35;
+				height = 41;
 			 dx = speed;
 		 }
 			public void HandleCollision(Enemy obj)

@@ -17,8 +17,6 @@ public class Powerup extends Sprite{
         dy = 0;
         width = 35;
         height = 41;
-		jumpSpeed = 1;
-		strength = 0;
 		speed = 0;
 		health = 0;
 		score = 0;

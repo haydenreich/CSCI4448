@@ -278,8 +278,7 @@ public class Screen extends JPanel implements ActionListener {
 			{
 				gameState = 0;
 				gameOver();
-				initObjects();
-				initScreen();
+				resetScreen();
 			}
 
 
@@ -306,6 +305,25 @@ public class Screen extends JPanel implements ActionListener {
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();
+	}
+	
+	public void resetScreen() {
+		menu = null;
+		timer.restart();
+		gameTime = 0;
+		spawnTimer = 0;
+		image = null;
+		player = null;
+		environmentObjects = null;
+		destructableObjects = null;
+		enemyObjects = null;
+		powerupObjects = null;
+		gameState = 0;
+		initObjects();
+		initScreen();
+		menu = new Menu(false);
+		menu.setPaused();
+		menu.setLocationRelativeTo(topFrame);
 	}
 	
     private class TAdapter extends KeyAdapter {

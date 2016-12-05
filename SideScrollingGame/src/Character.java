@@ -7,6 +7,7 @@ public class Character extends Sprite{
 		int strength;
 		int speed;
 		protected int score;
+		protected int dmgTimeout;
 		protected boolean leftPressed;
 		protected boolean rightPressed;
 		public Character(){
@@ -25,10 +26,16 @@ public class Character extends Sprite{
 			strength = 1000;
 			speed = 3;
 			score = 0;
+			dmgTimeout = 0;
 			leftPressed = false;
 			rightPressed = false;
 	    }
 		 
+		public void Update()
+		{
+			if(dmgTimeout>0) dmgTimeout--;
+		}
+		
 		 public void keyPressed(KeyEvent e){
 			 int key = e.getKeyCode();
 			 /*if (key == KeyEvent.VK_UP){
@@ -84,7 +91,11 @@ public class Character extends Sprite{
 		
 		 public void TakeDamage(int dmg)
 		 {
-			 health-=dmg;
+			 if(dmgTimeout==0)
+			 {
+				 dmgTimeout = 5;
+				 health-=dmg;
+			 }
 		 }
 
 		 public int getHealth()
@@ -115,7 +126,7 @@ public class Character extends Sprite{
 		 }
 			public void HandleCollision(Enemy obj)
 			{
-		    	if ((this.y+this.height-5)<obj.y)
+		    	if (((this.y+this.height-5)<obj.y) && dmgTimeout == 0)
 		    	{
 		    		obj.TakeDamage(strength);
 					 dy = 40;
@@ -132,7 +143,19 @@ public class Character extends Sprite{
 		    		this.SetFalling(true);
 		    	return !this.IsFalling();
 			}
-
+			public boolean HandleCollision(Destructable obj)
+			{
+				Rectangle rcThis = this.getBounds();
+				Rectangle rcObj = obj.getBounds();
+		    	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y && obj.broken == false)
+		    	{
+	        		obj.TakeDamage(2);
+		    		this.SetFalling(false);
+		    	}
+		    	else
+		    		this.SetFalling(true);
+		    	return !this.IsFalling();
+			}
 		//Dimension size = getSize();
 		//double w = size.getWidth();
 		//double h = size.getHeight();

@@ -10,7 +10,7 @@ public class Destructable extends Environment{
 	{
 		super(x, y, w, h);
 		broken = false;
-		health = 100;
+		health = 20;
 		strength = 0;
 		speed = 0;
 	}

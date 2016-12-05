@@ -64,6 +64,8 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(20, 510, 50, 10));
 		environmentObjects.add(new Environment(20, 480, 50, 10));
 		environmentObjects.add(new Environment(170, 480, 50, 10));
+		destructableObjects.add(new Destructable(300,480,50,10));
+		destructableObjects.add(new Destructable(430,480,50,10));
 		environmentObjects.add(new Environment(20, 450, 50, 10));
 		environmentObjects.add(new Environment(20, 420, 50, 10));
 		environmentObjects.add(new Environment(170, 390, 50, 10));
@@ -77,7 +79,7 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 150, 50, 10));
 		environmentObjects.add(new Environment(-40, 90, 50, 10));
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
-		destructableObjects.add(new Destructable(90,640,50,10));
+		
 		
 		
 		
@@ -257,7 +259,7 @@ public class Screen extends JPanel implements ActionListener {
 	    		 gameTime = 0;
 	    	 }
 			for(Destructable obj: destructableObjects){
-				if(obj.health == 100) obj.broken = false;
+				if(obj.health == 20) obj.broken = false;
 				if(obj.broken == true) obj.health += 1;
 			}
 
@@ -394,9 +396,7 @@ public class Screen extends JPanel implements ActionListener {
     		//Check player collision
     		if (rcObj.intersects(rcPlayer))
     		{
-    			if (obj instanceof BouncingEnemy){
-    				obj.setVisible(false);
-    			}
+    			obj.setVisible(false);
     			obj.DealDamage(player);
     		}
     	}

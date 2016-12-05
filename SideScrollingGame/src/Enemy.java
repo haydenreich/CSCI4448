@@ -4,15 +4,12 @@ import java.util.Random;
 public class Enemy extends Sprite{
 	int health = 1000;
 	int strength = 10;
-	
+	int speed = 1;
 	public Enemy(int x, int y, String path) {
         Random rand = new Random();
-<<<<<<< HEAD
         setImage(path);
         this.x = rand.nextInt(1210) + 1;
         this.y = 0;
-=======
-        setImage("enemy.png");
         if (x == -1){
         	this.x = rand.nextInt(1210) + 1;
         }
@@ -20,13 +17,12 @@ public class Enemy extends Sprite{
         	this.x = x;
         }
         this.y = -200;
->>>>>>> branch 'master' of https://github.com/haydenreich/CSCI4448
         width = 70;
         height = 82;
 		jumpSpeed = 5;
 		falling = true;
-		this.dx = 3;
-		if(rand.nextInt(2)==1) dx=-3;
+		this.dx = speed;
+		if(rand.nextInt(2)==1) dx=-speed;
     }
 	public void DealDamage(Character player)
 	{

@@ -341,6 +341,15 @@ public class Screen extends JPanel implements ActionListener {
 	    		Rectangle rcObj2 = obj2.getBounds();
 	        	if (!rcObj.intersects(rcObj2))
 	        		obj.SetFalling(true);
+	        	//else
+	        //	{
+	        		//obj.SetFalling(false);
+//	        		Random rand = new Random();
+//	        		obj.x = rand.nextInt(1210) + 1;
+//	        		obj.y = 0;
+//	        		repaint();
+	        	//	break;
+	        	//}
 	    	}
     		//Check Destructable collision
     		for (Destructable obj2 : destructableObjects)

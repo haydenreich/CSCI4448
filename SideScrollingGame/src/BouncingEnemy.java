@@ -1,9 +1,10 @@
 import java.util.Random;
 
-public class BouncingEnemy extends Sprite {
+public class BouncingEnemy extends Enemy {
 	int strength;
 	
 	public BouncingEnemy(int x, int y){
+		super(x,y);
 		setImage("enemy.png");
 		Random rand = new Random();
 		this.x = 0;

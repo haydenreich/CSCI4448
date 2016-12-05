@@ -47,8 +47,8 @@ public class Sprite {
 	}
 	public void fly()
 	{
-		x+=10;
-		if (x == 1280){
+		x+=6;
+		if (x >= 1280){
 			x = 0;
 			Random rand = new Random();
 			y = rand.nextInt(600) + 1;

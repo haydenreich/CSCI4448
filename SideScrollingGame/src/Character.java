@@ -24,7 +24,7 @@ public class Character extends Sprite{
 			jumpSpeed = 5;
 			health = 1000;
 			strength = 1000;
-			speed = 3;
+			speed = 2;
 			score = 0;
 			dmgTimeout = 0;
 			leftPressed = false;
@@ -34,6 +34,10 @@ public class Character extends Sprite{
 		public void Update()
 		{
 			if(dmgTimeout>0) dmgTimeout--;
+			else
+			{
+				pushed = 0;
+			}
 		}
 		
 		 public void keyPressed(KeyEvent e){
@@ -56,7 +60,7 @@ public class Character extends Sprite{
 			 {
 				 if(jump == false && falling == false)
 				 {
-					 dy = 120;
+					 dy = 75;
 					 jump = true;
 				 }
 			 }
@@ -132,6 +136,10 @@ public class Character extends Sprite{
 					 dy = 40;
 					 jump = true;
 		    	}
+			}
+			public void Push(int push)
+			{
+		    		pushed=push;
 			}
 			public boolean HandleCollision(Environment obj)
 			{

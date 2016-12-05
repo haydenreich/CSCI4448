@@ -8,6 +8,7 @@ public class BouncingEnemy extends Enemy {
 		Random rand = new Random();
 		this.x = 0;
 		this.y = rand.nextInt(600) + 1;
+		dx = 1;
 		width = 40;
 		height = 40;
 	}

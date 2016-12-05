@@ -276,11 +276,11 @@ public class Screen extends JPanel implements ActionListener {
 				Enemy enemy = new EnemyType0(1,1);
 				enemyObjects.add(enemy);
 			}
-			if (spawnTimer % 500 == 0){
+			if (spawnTimer % 200 == 0){
 				Enemy enemy = new EnemyType1(player.x,1);
 				enemyObjects.add(enemy);
 			}
-			if (spawnTimer % 150 == 0){
+			if (spawnTimer % 300 == 0){
 				Enemy flyer = new BouncingEnemy(-1,1);
 				enemyObjects.add(flyer);
 			}

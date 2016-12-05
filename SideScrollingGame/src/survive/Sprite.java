@@ -47,9 +47,6 @@ public class Sprite {
 			x-=1;
 			blocked = true;
 		}
-		else if(x <= 0) x+=1;
-		else if(x>= 1245) x-=1;
-		else y+=dy;
 	}
 	
 	public void jump()
@@ -70,11 +67,10 @@ public class Sprite {
 	{
 		x+=6;
 		if (x >= 1280){
-			
-			
-			x = 0;
-			Random rand = new Random();
-			y = rand.nextInt(600) + 1;
+			vis = false;
+//			x = 0;
+//			Random rand = new Random();
+//			y = rand.nextInt(600) + 1;
 		}
 	}
 	public void SetFalling(boolean falling)

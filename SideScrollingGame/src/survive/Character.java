@@ -76,7 +76,7 @@ public class Character extends Sprite{
 			 {
 				 if(jump == false && falling == false)
 				 {
-					 dy = 120;
+					 dy = 75;
 					 jump = true;
 				 }
 			 }

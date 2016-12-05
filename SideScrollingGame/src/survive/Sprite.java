@@ -31,7 +31,7 @@ public class Sprite {
 	
 	public void move(){
 		blocked = false;
-		if(x>0 && x<1210) x += dx;
+		//if(x>0 && x<1210) x += dx;
 		if(x>0 && x<1245) x += dx;
 		if (jump) jump();
 		else if (falling) fall();

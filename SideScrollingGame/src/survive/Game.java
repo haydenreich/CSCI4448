@@ -1,4 +1,5 @@
 package survive;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

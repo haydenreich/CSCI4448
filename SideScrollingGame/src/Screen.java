@@ -38,6 +38,7 @@ public class Screen extends JPanel implements ActionListener {
 	private ArrayList<Environment> environmentObjects;
 	private ArrayList<Enemy> enemyObjects;
 	private ArrayList<Powerup> powerupObjects;
+	private ArrayList<BouncingEnemy> flyingObjects;
 	private JFrame topFrame;
 	private int score;
 	private int gameState;
@@ -55,6 +56,7 @@ public class Screen extends JPanel implements ActionListener {
 		//Init object arrays
 		environmentObjects = new ArrayList<>();
 		enemyObjects = new ArrayList<>();
+		flyingObjects = new ArrayList<>();
 		powerupObjects = new ArrayList<>();
 		
 		//The Level
@@ -73,6 +75,8 @@ public class Screen extends JPanel implements ActionListener {
 		player = new Character();
 		Enemy enemy = new Enemy(500, 200);
 		enemyObjects.add(enemy);
+		BouncingEnemy flyer = new BouncingEnemy(0,1);
+		flyingObjects.add(flyer);
 		Powerup powerup = new Powerup(0,1);
 		powerupObjects.add(powerup);
 		powerup = new Powerup(200,1);
@@ -148,6 +152,17 @@ public class Screen extends JPanel implements ActionListener {
     		else
     			itEnemy.remove();
     	}
+    	
+    	ListIterator<BouncingEnemy> itFlyer = flyingObjects.listIterator(0);
+    	while(itFlyer.hasNext()){
+    		BouncingEnemy objEnemy = itFlyer.next();
+    		if(objEnemy.isVisible())
+    		{
+    			g2d.drawImage(objEnemy.getImage(), objEnemy.getX(), objEnemy.getY(),objEnemy.getWidth(),objEnemy.getHeight(), this);
+    		}
+    		else
+    			itFlyer.remove();
+    	}
     	//Draw Powerups
 //    	for (Powerup obj : powerupObjects)
 //    	{
@@ -201,6 +216,11 @@ public class Screen extends JPanel implements ActionListener {
 			for (Enemy obj : enemyObjects)
 			{
 				obj.move();
+			}
+			
+			for (BouncingEnemy obj : flyingObjects)
+			{
+				obj.fly();
 			}
 
 			//update powerups

@@ -1,5 +1,7 @@
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 
 public class Sprite {
@@ -42,6 +44,15 @@ public class Sprite {
 	public void fall()
 	{
 		y+=5;
+	}
+	public void fly()
+	{
+		x+=10;
+		if (x == 1280){
+			x = 0;
+			Random rand = new Random();
+			y = rand.nextInt(600) + 1;
+		}
 	}
 	public void SetFalling(boolean falling)
 	{

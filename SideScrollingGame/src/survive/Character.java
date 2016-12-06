@@ -195,9 +195,10 @@ public class Character extends Sprite{
 	        		obj.TakeDamage(2);
 		    		this.SetFalling(false);
 		    	}
-		    	else
+		    	else{
 		    		this.SetFalling(true);
-		    		if(obj.health < 30)obj.health += 1;
+		    		if(obj.health < 30) obj.health += 2;
+		    	}
 		    	return !this.IsFalling();
 			}
 		//Dimension size = getSize();

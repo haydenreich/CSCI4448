@@ -8,6 +8,18 @@ public class EnemyType0 extends Enemy{
 		super(x,y, "enemy.png");
 	}
 	@Override
+	public boolean HandleCollision(Destructable obj)
+	{
+		if(super.HandleCollision(obj))
+		{
+			obj.TakeDamage(strength);
+			return true;
+		}
+		else
+			return false;
+		
+	}
+	@Override
 	public void HandleCollision(Character player)
 	{
     	super.HandleCollision(player);

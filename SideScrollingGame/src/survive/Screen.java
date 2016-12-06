@@ -313,7 +313,7 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new EnemyType0(rand.nextInt(800),-50);
+				Enemy enemy = new EnemyType0(rand.nextInt(1280),-50);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 200 == 0){
@@ -339,7 +339,10 @@ public class Screen extends JPanel implements ActionListener {
 			
 			//fix destructables
 			for(Destructable obj: destructableObjects){
-				if(obj.health == 30) obj.broken = false;
+				if(obj.health >= 30){ 
+					obj.broken = false;
+					obj.health = 30;
+				}
 				if(obj.broken == true) obj.health += 1;
 			}
 			

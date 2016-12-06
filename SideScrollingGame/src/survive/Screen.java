@@ -87,7 +87,15 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 210, 50, 10));
 		environmentObjects.add(new Environment(170, 180, 50, 10));
 		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		environmentObjects.add(new Environment(170, 100, 50, 10));
 		environmentObjects.add(new Environment(-40, 90, 50, 10));
+		environmentObjects.add(new Environment(240, 70, 50, 10));
+		environmentObjects.add(new Environment(310, 40, 50, 10));
+		environmentObjects.add(new Environment(420, 40, 10, 10));
+		environmentObjects.add(new Environment(480, 40, 10, 10));
+		environmentObjects.add(new Environment(540, 40, 10, 10));
+		environmentObjects.add(new Environment(600, 40, 10, 10));
+		//environmentObjects.add(new Environment(570, 40, 10, 10));
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
 		
 		
@@ -295,9 +303,9 @@ public class Screen extends JPanel implements ActionListener {
 			
 			if (player.y >= 639){
 				floordmgTimer += 1;
-				if (floordmgTimer == 50){
+				if (floordmgTimer >= 50){
 					player.TakeDamage(10);
-					floordmgTimer -= 50;
+					//floordmgTimer -= 50;
 				}
 			}
 			else{

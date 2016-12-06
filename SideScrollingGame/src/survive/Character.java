@@ -37,8 +37,8 @@ public class Character extends Sprite{
 		private void initChar() {
 	        
 	        setImage("sprite.png");
-	        x = 1230;
-	        y = 0;
+	        x = 30;
+	        y = 550;
 	        width = 35;
 	        height = 41;
 			jumpSpeed = 5;

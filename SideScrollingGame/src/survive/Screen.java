@@ -99,11 +99,11 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects.add(new Destructable(460, 330, 50, 10));
 		environmentObjects.add(new Environment(170, 310, 50, 10));
 		destructableObjects.add(new Destructable(1190, 300, 10, 10));
-		environmentObjects.add(new Environment(950, 420, 50, 10));
+		//environmentObjects.add(new Environment(950, 420, 50, 10));
 		destructableObjects.add(new Destructable(530, 300, 50, 10));
 		destructableObjects.add(new Destructable(600, 270, 50, 10));
 		destructableObjects.add(new Destructable(220, 270, 50, 10));
-		environmentObjects.add(new Environment(-40, 270, 50, 10));
+		destructableObjects.add(new Destructable(-40, 270, 50, 10));
 		destructableObjects.add(new Destructable(1260, 260, 10, 10));
 		destructableObjects.add(new Destructable(670, 240, 50, 10));
 		environmentObjects.add(new Environment(170, 230, 50, 10));
@@ -112,12 +112,12 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 210, 50, 10));
 		destructableObjects.add(new Destructable(1260, 180, 10, 10));
 		environmentObjects.add(new Environment(170, 180, 50, 10));
-		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		destructableObjects.add(new Destructable(-40, 150, 50, 10));
 		destructableObjects.add(new Destructable(1190, 140, 10, 10));
 		destructableObjects.add(new Destructable(1260, 100, 10, 10));
-		environmentObjects.add(new Environment(170, 100, 50, 10));
+		environmentObjects.add(new Environment(170, 90, 70, 10));
 		environmentObjects.add(new Environment(-40, 90, 50, 10));
-		environmentObjects.add(new Environment(240, 70, 50, 10));
+		environmentObjects.add(new Environment(90, 90, 10, 10));
 		environmentObjects.add(new Environment(1180, 50, 100, 10));
 		destructableObjects.add(new Destructable(1108, 50, 72, 10));
 		destructableObjects.add(new Destructable(1036, 50, 75, 10));
@@ -125,21 +125,10 @@ public class Screen extends JPanel implements ActionListener {
 		destructableObjects.add(new Destructable(892, 50, 75, 10));
 		environmentObjects.add(new Environment(842, 50, 50, 10));
 
-		environmentObjects.add(new Environment(310, 40, 50, 10));
-		environmentObjects.add(new Environment(420, 40, 10, 10));
-		environmentObjects.add(new Environment(480, 40, 10, 10));
-		environmentObjects.add(new Environment(540, 40, 10, 10));
-		environmentObjects.add(new Environment(600, 40, 10, 10));
-		environmentObjects.add(new Environment(660, 40, 50, 10));
-		//environmentObjects.add(new Environment(570, 40, 10, 10));
-		environmentObjects.add(new Environment(-40, 30, 50, 10));
-		
-		environmentObjects.add(new Environment(710, -10, 10, 60));
-		
-		
-		
-		
-		
+		environmentObjects.add(new Environment(310, 90, 50, 10));
+		environmentObjects.add(new Environment(420, 90, 10, 10));
+		environmentObjects.add(new Environment(480, 90, 10, 10));
+		environmentObjects.add(new Environment(520, 50, 50, 10));
 		
 		
 		player = new Character();
@@ -152,13 +141,13 @@ public class Screen extends JPanel implements ActionListener {
 		//powerupObjects.add(new PowerupHealth(800,1));
 		//powerupObjects.add(new PowerupHealth(1000,1));
 		//powerupObjects.add(new PowerupHealth(1200,1));
-		powerupObjects.add(new PowerupGold(0,105));
-		powerupObjects.add(new PowerupGold(665,-10));
-		powerupObjects.add(new PowerupGold(740,400));
+		powerupObjects.add(new PowerupGold(170,130));
+		powerupObjects.add(new PowerupGold(520,-10));
+		powerupObjects.add(new PowerupGold(600,530));
 		powerupObjects.add(new PowerupGold(740,160));
-		powerupObjects.add(new PowerupGold(1230,370));
-		powerupObjects.add(new PowerupGold(1250,0));
-		powerupObjects.add(new PowerupGold(950,370));
+		powerupObjects.add(new PowerupGold(1210,370));
+		powerupObjects.add(new PowerupGold(842,0));
+		//powerupObjects.add(new PowerupGold(950,370));
 	}
 	
 	private void initScreen(){

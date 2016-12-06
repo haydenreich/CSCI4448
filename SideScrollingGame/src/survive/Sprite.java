@@ -51,7 +51,7 @@ public class Sprite {
 	
 	public void jump()
 	{
-		if (dy>0)
+		if (dy>0 && y>0)
 		{
 			y-=5;
 			dy-=5;

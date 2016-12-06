@@ -65,20 +65,23 @@ public class Screen extends JPanel implements ActionListener {
 		
 		//The Level
 		environmentObjects.add(new Environment(0, 680, 1280, 5));
-		environmentObjects.add(new Environment(20, 640, 50, 10));
-		environmentObjects.add(new Environment(600, 640, 50, 10));
+		environmentObjects.add(new Environment(20, 620, 50, 10));
+		environmentObjects.add(new Environment(600, 600, 50, 10));
 		environmentObjects.add(new Environment(100, 580, 50, 10));
+		environmentObjects.add(new Environment(740, 570, 50, 10));
+		destructableObjects.add(new Destructable(740, 510, 50, 10));
 		environmentObjects.add(new Environment(20, 510, 50, 10));
 		environmentObjects.add(new Environment(20, 480, 50, 10));
 		environmentObjects.add(new Environment(170, 480, 50, 10));
 		destructableObjects.add(new Destructable(300,480,50,10));
 		destructableObjects.add(new Destructable(430,480,50,10));
 		environmentObjects.add(new Environment(20, 450, 50, 10));
+		environmentObjects.add(new Environment(740, 450, 50, 10));
 		environmentObjects.add(new Environment(20, 420, 50, 10));
 		environmentObjects.add(new Environment(170, 390, 50, 10));
 		environmentObjects.add(new Environment(220, 350, 50, 10));
 		environmentObjects.add(new Environment(170, 310, 50, 10));
-		environmentObjects.add(new Environment(220, 270, 50, 10));
+		destructableObjects.add(new Destructable(220, 270, 50, 10));
 		environmentObjects.add(new Environment(-40, 270, 50, 10));
 		environmentObjects.add(new Environment(170, 230, 50, 10));
 		environmentObjects.add(new Environment(-40, 210, 50, 10));
@@ -88,7 +91,7 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
 		
 		
-		environmentObjects.add(new Environment(530, 480, 500, 10));
+		
 		
 		
 		
@@ -260,11 +263,11 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new EnemyType0(1,1);
+				Enemy enemy = new EnemyType0(rand.nextInt(1280),-50);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 200 == 0){
-				Enemy enemy = new EnemyType1(player.x,1);
+				Enemy enemy = new EnemyType1(rand.nextInt(1280),-50);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 150 == 0){
@@ -292,9 +295,9 @@ public class Screen extends JPanel implements ActionListener {
 			
 			if (player.y >= 639){
 				floordmgTimer += 1;
-				if (floordmgTimer == 100){
+				if (floordmgTimer == 50){
 					player.TakeDamage(10);
-					floordmgTimer -= 100;
+					floordmgTimer -= 50;
 				}
 			}
 			else{

@@ -64,7 +64,7 @@ public class Enemy extends Sprite{
     	if (rcObj.intersects(rcThis) && (this.y+this.height-5)<obj.y)
     	{
     		this.SetFalling(false);
-    		if(this.y+this.height>=680) vis = false;
+    		if(this.y+this.height>=680 || this.x <=5) vis = false;
     	}
     	else
     		this.SetFalling(true);

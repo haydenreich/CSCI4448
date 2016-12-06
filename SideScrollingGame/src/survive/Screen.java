@@ -43,6 +43,7 @@ public class Screen extends JPanel implements ActionListener {
 	private Character player;
 	private ArrayList<Environment> environmentObjects;
 	private ArrayList<Destructable> destructableObjects;
+	private ArrayList<Door> exitDoors;
 	private ArrayList<Enemy> enemyObjects;
 	private ArrayList<Powerup> powerupObjects;
 	private JFrame topFrame;
@@ -62,6 +63,7 @@ public class Screen extends JPanel implements ActionListener {
 		enemyObjects = new ArrayList<>();
 		powerupObjects = new ArrayList<>();
 		destructableObjects = new ArrayList<>();
+		exitDoors = new ArrayList<>();
 		
 		//The Level
 		environmentObjects.add(new Environment(0, 680, 1280, 5));
@@ -97,6 +99,7 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(600, 40, 10, 10));
 		//environmentObjects.add(new Environment(570, 40, 10, 10));
 		environmentObjects.add(new Environment(-40, 30, 50, 10));
+		
 		
 		
 		
@@ -164,6 +167,19 @@ public class Screen extends JPanel implements ActionListener {
     		if(obj.isVisible())
     		{
 	    		g2d.setColor(obj.getColor());
+	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
+    		}
+    		else
+    			itEnvironment.remove();
+    	}
+    	
+    	//Draw Exit Doors
+    	ListIterator<Door> itExit = exitDoors.listIterator(0);
+    	while(itExit.hasNext()){
+    		Door obj = itExit.next();
+    		if(obj.isVisible())
+    		{
+	    		g2d.setColor(Color.cyan);
 	    		g2d.fillRect(obj.getX(), obj.getY(),obj.getWidth(),obj.getHeight());
     		}
     		else

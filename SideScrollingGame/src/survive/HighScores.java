@@ -41,7 +41,7 @@ public class HighScores
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			String url = "jdbc:mysql://localhost:3306/High_Scores";
-			conn = DriverManager.getConnection(url, "root", "root");
+			conn = DriverManager.getConnection(url, "root", "bfriends8");
 			queryDb();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

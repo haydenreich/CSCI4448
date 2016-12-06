@@ -197,6 +197,7 @@ public class Character extends Sprite{
 		    	}
 		    	else
 		    		this.SetFalling(true);
+		    		if(obj.health < 30)obj.health += 1;
 		    	return !this.IsFalling();
 			}
 		//Dimension size = getSize();

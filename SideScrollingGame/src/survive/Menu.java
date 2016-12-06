@@ -2,6 +2,8 @@ package survive;
 
 import javax.swing.*;
 
+import survive.HighScores.ScoreObj;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -53,6 +55,14 @@ public class Menu extends JDialog implements ActionListener {
 		else if("help".equals(e.getActionCommand())) {
 			JOptionPane.showMessageDialog(null, "This is the help menu");
 		}
+		else if("highscore".equals(e.getActionCommand())) {
+			HighScores scores = new HighScores();
+			String message = "HIGH SCORES:\n";
+			for(ScoreObj obj : scores.scoreList) {
+				message = message + obj.getName() + "\t\t\t" + obj.getScore() + "\n";
+			}
+			JOptionPane.showMessageDialog(null, message);
+		}
 	}
 	
 	public void initMenu() {
@@ -77,7 +87,7 @@ public class Menu extends JDialog implements ActionListener {
 		play.setFont(font);
 		
 		highScore = new JButton("High Scores");
-		highScore.setActionCommand("highScore");
+		highScore.setActionCommand("highscore");
 		highScore.addActionListener(this);
 		highScore.setFont(font);
 		

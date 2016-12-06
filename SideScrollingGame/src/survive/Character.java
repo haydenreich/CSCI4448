@@ -19,7 +19,7 @@ public class Character extends Sprite{
 		transient int strength;
 		transient int speed;
 		@Column(name = "SCORE")
-		protected transient int score;
+		protected int score;
 		protected transient int dmgTimeout;
 		protected transient boolean leftPressed;
 		protected transient boolean rightPressed;

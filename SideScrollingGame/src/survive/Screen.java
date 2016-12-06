@@ -76,35 +76,55 @@ public class Screen extends JPanel implements ActionListener {
 		environmentObjects.add(new Environment(920, 580, 10, 10));
 		environmentObjects.add(new Environment(100, 580, 50, 10));
 		environmentObjects.add(new Environment(740, 570, 50, 10));
+		environmentObjects.add(new Environment(1260, 540, 20, 10));
+		environmentObjects.add(new Environment(1260, 500, 20, 10));
 		destructableObjects.add(new Destructable(740, 510, 50, 10));
 		environmentObjects.add(new Environment(20, 510, 50, 10));
+		environmentObjects.add(new Environment(1260, 460, 20, 10));
 		environmentObjects.add(new Environment(20, 480, 50, 10));
 		environmentObjects.add(new Environment(170, 480, 50, 10));
 		destructableObjects.add(new Destructable(300,480,50,10));
 		destructableObjects.add(new Destructable(430,480,50,10));
 		environmentObjects.add(new Environment(20, 450, 50, 10));
 		environmentObjects.add(new Environment(740, 450, 50, 10));
+		environmentObjects.add(new Environment(1180, 420, 100, 10));
 		destructableObjects.add(new Destructable(670, 420, 50, 10));
 		environmentObjects.add(new Environment(20, 420, 50, 10));
 		destructableObjects.add(new Destructable(600, 390, 50, 10));
 		environmentObjects.add(new Environment(170, 390, 50, 10));
+		destructableObjects.add(new Destructable(1190, 380, 10, 10));
 		destructableObjects.add(new Destructable(530, 360, 50, 10));
 		environmentObjects.add(new Environment(220, 350, 50, 10));
+		destructableObjects.add(new Destructable(1260, 340, 10, 10));
 		destructableObjects.add(new Destructable(460, 330, 50, 10));
 		environmentObjects.add(new Environment(170, 310, 50, 10));
+		destructableObjects.add(new Destructable(1190, 300, 10, 10));
+		environmentObjects.add(new Environment(950, 420, 50, 10));
 		destructableObjects.add(new Destructable(530, 300, 50, 10));
 		destructableObjects.add(new Destructable(600, 270, 50, 10));
 		destructableObjects.add(new Destructable(220, 270, 50, 10));
 		environmentObjects.add(new Environment(-40, 270, 50, 10));
+		destructableObjects.add(new Destructable(1260, 260, 10, 10));
 		destructableObjects.add(new Destructable(670, 240, 50, 10));
 		environmentObjects.add(new Environment(170, 230, 50, 10));
+		destructableObjects.add(new Destructable(1190, 220, 10, 10));
 		environmentObjects.add(new Environment(740, 210, 50, 10));
 		environmentObjects.add(new Environment(-40, 210, 50, 10));
+		destructableObjects.add(new Destructable(1260, 180, 10, 10));
 		environmentObjects.add(new Environment(170, 180, 50, 10));
 		environmentObjects.add(new Environment(-40, 150, 50, 10));
+		destructableObjects.add(new Destructable(1190, 140, 10, 10));
+		destructableObjects.add(new Destructable(1260, 100, 10, 10));
 		environmentObjects.add(new Environment(170, 100, 50, 10));
 		environmentObjects.add(new Environment(-40, 90, 50, 10));
 		environmentObjects.add(new Environment(240, 70, 50, 10));
+		environmentObjects.add(new Environment(1180, 50, 100, 10));
+		destructableObjects.add(new Destructable(1108, 50, 72, 10));
+		destructableObjects.add(new Destructable(1036, 50, 75, 10));
+		destructableObjects.add(new Destructable(964, 50, 75, 10));
+		destructableObjects.add(new Destructable(892, 50, 75, 10));
+		environmentObjects.add(new Environment(842, 50, 50, 10));
+
 		environmentObjects.add(new Environment(310, 40, 50, 10));
 		environmentObjects.add(new Environment(420, 40, 10, 10));
 		environmentObjects.add(new Environment(480, 40, 10, 10));
@@ -136,9 +156,9 @@ public class Screen extends JPanel implements ActionListener {
 		powerupObjects.add(new PowerupGold(665,-10));
 		powerupObjects.add(new PowerupGold(740,400));
 		powerupObjects.add(new PowerupGold(740,160));
-		powerupObjects.add(new PowerupGold(1260,530));
-		//powerupObjects.add(new PowerupGold(900,1));
-		//powerupObjects.add(new PowerupGold(1100,1));
+		powerupObjects.add(new PowerupGold(1230,370));
+		powerupObjects.add(new PowerupGold(1250,0));
+		powerupObjects.add(new PowerupGold(950,370));
 	}
 	
 	private void initScreen(){
@@ -288,7 +308,7 @@ public class Screen extends JPanel implements ActionListener {
 			gameTime += 1;
 	    	spawnTimer += 1;
 			if (spawnTimer % 100 == 0){
-				Enemy enemy = new EnemyType0(rand.nextInt(1280),-50);
+				Enemy enemy = new EnemyType0(rand.nextInt(800),-50);
 				enemyObjects.add(enemy);
 			}
 			if (spawnTimer % 200 == 0){
